@@ -9,7 +9,7 @@
   - [ ]Update Spil
   - [ ]Delete Spil
 - [ ]Menu Class
-  - [ ]Add Game
+  - [x]Create Game
   - [ ]Search Game
 - [ ]Dokumentation
   - [ ]Pseudo - Update spil
