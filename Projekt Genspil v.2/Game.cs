@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,11 +12,11 @@ namespace Projekt_Genspil_v._2
         int antal;
         int i = 0;
         int j = 0;
-        private string title { get; set; }
-        private string[] version = new string[10];
-        private string genre { get; set; }
+        public string title { get; set; }
+        public string[] version = new string[10];
+        public string genre { get; set; }
         private int amount;
-        private int[] players = new int[2];  // Minimum til maksimum spillere
+        public int[] players = new int[2];  // Minimum til maksimum spillere
         public char[,] gameCondiditon = new char[10, 50];
         public int[,] price = new int[10, 50];
         public string[,] notes = new string[10, 50];
@@ -60,7 +61,7 @@ namespace Projekt_Genspil_v._2
             Console.Write(" | Antal spillere: {0} - {1}", players[0], players[1]);
             for (int g = 0; g < version.Length; g++)
             {
-                if (version[i] != null)
+                if (version[g] != null)
                 {
                     Console.WriteLine("Udgave        : " + version[g]);
                     for (int n = 0; n < price.Length; n++)
