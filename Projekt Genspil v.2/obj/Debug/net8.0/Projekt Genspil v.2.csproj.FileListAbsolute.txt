@@ -1,0 +1,14 @@
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\bin\Debug\net8.0\Projekt Genspil v.2.exe
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\bin\Debug\net8.0\Projekt Genspil v.2.deps.json
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\bin\Debug\net8.0\Projekt Genspil v.2.runtimeconfig.json
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\bin\Debug\net8.0\Projekt Genspil v.2.dll
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\bin\Debug\net8.0\Projekt Genspil v.2.pdb
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.AssemblyInfoInputs.cache
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.AssemblyInfo.cs
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.csproj.CoreCompileInputs.cache
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.dll
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\refint\Projekt Genspil v.2.dll
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.pdb
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.genruntimeconfig.cache
+C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\ref\Projekt Genspil v.2.dll

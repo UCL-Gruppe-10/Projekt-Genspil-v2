@@ -24,27 +24,27 @@ namespace Projekt_Genspil_v._2
         {
             Console.Write("Hvad hedder spillet: ");
             title = Console.ReadLine();
-            Console.Write("Hvilken version er spillet: ");
-            version[i] = Console.ReadLine();
             Console.Write("Hvilken genre er spillet: ");
             genre = Console.ReadLine();
+            Console.Write("Minimum antal spiller? ");
+            while (players[0] == 0) Int32.TryParse(Console.ReadLine(), out players[0]);
+            Console.Write("Maksimum antal spiller: ");
+            while (players[1] == 0) Int32.TryParse(Console.ReadLine(), out players[1]);
+            Console.Write("Hvilken version er spillet: ");
+            version[i] = Console.ReadLine();
             Console.Write("Hvilken stand er spillet i: ");
             do
             {
                 try
                 {
                     gameCondiditon[i, j] = Convert.ToChar(Console.ReadLine());
+                    char.ToUpper(gameCondiditon[i, j]); 
                 }
                 catch
                 {
                     Console.WriteLine("Forkert input - prøv igen");
                 }
             } while (gameCondiditon[i, j] == null);
-
-            Console.Write("Minimum antal spiller? ");
-            while (players[0] == 0) Int32.TryParse(Console.ReadLine(), out players[0]);
-            Console.Write("Maksimum antal spiller: ");
-            while (players[1] == 0) Int32.TryParse(Console.ReadLine(), out players[1]);
             Console.Write("Hvad koster spillet: ");
             while (price[i, j] == 0) Int32.TryParse(Console.ReadLine(), out price[i, j]);
             Console.Write("Noter: ");

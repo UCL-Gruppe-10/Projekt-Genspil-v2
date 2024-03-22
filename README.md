@@ -20,8 +20,10 @@
   - [x]Domænemodel
   - [x]Objektmodel
 
-Git Bash kommandoer:
+Git Bash kommandoer: 
 
+- git init
+  - initierer nyt lokalt repo
 - git clone <URL>          
   - kloner github repoet
 - git status               
@@ -32,6 +34,8 @@ Git Bash kommandoer:
   - laver et commit med en kommentar
 - git push                 
   - pusher til github
+  - git push <HTTP> 
+    - sender til nyt repo
 - git pull                 
   - trækker repo ned fra github
 - ls                       
