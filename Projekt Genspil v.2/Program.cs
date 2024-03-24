@@ -7,9 +7,12 @@
             Game spil = new Game();
             Menu menu = new Menu();
 
+            menu.ReadtxtFile();
+            menu.SaveIndex();
+            menu.ShowInventory();
             menu.ShowMenu();
             menu.SelectMenuItem();
-            menu.ShowInventory();
+            
         }
     }
 }
