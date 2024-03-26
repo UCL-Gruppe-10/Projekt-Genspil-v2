@@ -12,10 +12,8 @@ namespace Projekt_Genspil_v._2
     {
         public Game[] gameTitle = new Game[50];
         int gameItem = 0;
-        string[] saveTitle = new string[50];
-        string[,] saveVersion = new string[10, 20];
-        string[,,] saveCopy = new string[50, 10, 20];
-
+        
+        
         public void ShowMenu() // Printer den primære menu
         {
             //Console.Clear();
@@ -70,10 +68,12 @@ namespace Projekt_Genspil_v._2
         }
         public void PrinttxtFile()
         {
-            string[] version = new string[50];
-            DateTime Dato = new DateTime();
-            string dato = Dato.ToString();
-            for(int i = 0; i < 50;i++)
+            DateTime Dato = DateTime.Now;
+            string dato = Dato.ToShortDateString();
+            string[] saveTitle = new string[50];
+            string[,] saveVersion = new string[10, 20];
+            string[,,] saveCopy = new string[50, 10, 20];
+            for (int i = 0; i < 50;i++)
             {
                 // Tester om der er en tittel i arrayet, og er der det, skrives tittel, genre, og antal spillere i samme string.
                 if (gameTitle[i] != null)
@@ -106,10 +106,10 @@ namespace Projekt_Genspil_v._2
             }
             try
             {
-                //Open the File
-                StreamWriter sw = new StreamWriter("C:\\Users\\pibm9\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Dokumenter\\Datamatiker\\Programmering\\Projekt Genspil v.2\\GenspilLAgerListe3.txt", true, Encoding.ASCII);
-
-                sw.WriteLine("Lagerliste Genspil");               
+                // Instantiate the StreamWriter object, and create/set it to write/overwrite the variables to .txt
+                StreamWriter sw = new StreamWriter($"C:\\Users\\pibm9\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Dokumenter\\Datamatiker\\Programmering\\Projekt Genspil v.2\\GenspilLAgerListe.txt", false, Encoding.ASCII);
+                //write the Title and date of the list/backup
+                sw.WriteLine($"Lagerliste Genspil - {dato}");               
                 for(int a = 0; a < 50; a++)
                 {
                     // Hvis der er et input i arrayet, bliver dette printet.
@@ -143,6 +143,7 @@ namespace Projekt_Genspil_v._2
                 Console.WriteLine("Filer gemt til fil.\nFarvel.");
                 //close the file
                 sw.Close();
+                Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -151,49 +152,83 @@ namespace Projekt_Genspil_v._2
             finally
             {
                 Console.WriteLine("Executing finally block.");
+
             } 
         }
+        // Method to read the text file, and extract each var, and save them in their corresponding place.
         public void ReadtxtFile()
         {
             string line = "123";
+            string[] save;
             try
             {
-                int d = -1, e = -1, f = -1;
+                int t = -1, v = -1, c = -1;
                 // Pass the file path and file to the StreamReader constructor.
                 StreamReader sr = new StreamReader("C:\\Users\\pibm9\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Dokumenter\\Datamatiker\\Programmering\\Projekt Genspil v.2\\GenspilLAgerListe.txt");
                 
                 while (line != null)
                 {
-
+                    
                     // Read the first line of text.
                     line = sr.ReadLine();
-                    // Cpmtomie tp read, until end of file.
-                    // save  line in Title Array
+                    // Continue to read, until end of file.
                     if (line == null)
                         break;
+                    // If line contains "Title", create new instance of Game, and increment gameItem.
                     if (line.Contains("Tittel: "))
                     {
-                        d++;
-                        e = -1;
-                        saveTitle[d] = line;
-                        Console.WriteLine($"index: {d} : {saveTitle[d]}");
-                        
+                        gameTitle[gameItem] = new Game();
+                        gameItem++;
+                        t++;
+                        // increment "t" for title, and reset "v" for version.
+                        v = -1;
+                        // Write the title index, split the line to save array, for each " : "
+                        Console.WriteLine($"index: {t} : {line}");
+                        save = line.Split(":");
+                        // save title, genre, and num. players in corresponding places in the game class.
+                        gameTitle[t].SetTitle(save[1]);
+                        gameTitle[t].SetGenre(save[3]);
+                        Int32.TryParse(save[5], out gameTitle[t].players[0]);
+                        Int32.TryParse(save[7], out gameTitle[t].players[1]);
                     }
+                    // If line contains "version:" write the corresponding index number.
                     else if (line.Contains("Version:"))
                     {
-                        e++;
-                        f = -1;
-                        saveVersion[d, e] = line;
-                        Console.WriteLine($"Index: {d},{e} : {saveVersion[d, e]}");
+                        // Split the line into the save array, and assign the value of
+                        // "version" on its corresponding place in the game class.
+                        v++;
+                        // Increment "E", and reset "c" for copy 
+                        c = -1;
+                        save = line.Split(":");
+                        gameTitle[t].SetVersion(save[1]);
+                        gameTitle[t].i = v;
+                        Console.WriteLine($"Index: {t}, {v} : {line}");
                     }
+                    // if line contains "pris:" write the corresponding index and line.
                     else if (line.Contains("Pris: "))
                     {
-                        f++;
-                        saveCopy[d, e, f] = line;
-                        Console.WriteLine($"Index: {d}, {e}, {f} : {saveCopy[d, e, f]}");
+                        // increment "c" for copy, and split the line in the save array.
+                        c++;
+                        gameTitle[t].j[v] = c;
+                        save = line.Split(":");
+                        // trim save[1], so that it contains one character, convert to char,
+                        // and save in corresponding var in game class.
+                        save[1].Trim();
+                        char condition = Convert.ToChar(save[1].Trim());
+                        gameTitle[t].gameCondiditon[v, c] = condition;
+                        Int32.TryParse(save[3], out gameTitle[t].price[v, gameTitle[t].j[v]]);
+                        if (save.Contains(save[5]) && save[5] != null)
+                                gameTitle[t].notes[v, gameTitle[t].j[v]] = save[5];
+                        //saveCopy[d, e, f] = line;
+                        Console.WriteLine($"Index: {t}, {v}, {c} : {line}");
                     }
-                    else { Console.WriteLine("Fejl"); }
+                    // if nothing else fits, write the line, close the file, and ask for reaction from user. 
+                    else 
+                    {
+                        Console.WriteLine(line);
+                    }
                 }
+                sr.Close();
                 Console.ReadLine();
             }
             catch (Exception e)
@@ -201,68 +236,6 @@ namespace Projekt_Genspil_v._2
                 Console.WriteLine("Exception: " + e.Message);
             }
             finally { Console.WriteLine("Executing finally block"); }
-        }
-        public void SaveIndex()
-        {
-            string _title;
-            string[] _version = new string[10];
-            string _genre;
-            int _amount;
-            int[] _players = new int[2];  // Minimum til maksimum spillere
-            char[,] _gameCondiditon = new char[10, 20];
-            int _price;
-            string[,] _notes = new string[10, 20];
-
-            string[] title = new string[50];
-            string[] version = new string[10];
-            string[,] copy = new string[10, 20];
-            for (int i = 0; i < title.Length; i++)
-            {
-                if (saveTitle[i] != null)
-                {
-                    gameTitle[gameItem] = new Game();
-                    gameItem++;
-                    title[i] = saveTitle[i];
-                    string[] save = title[i].Split(":", StringSplitOptions.TrimEntries);
-                    _title = save[1];
-                    gameTitle[i].SetTitle(_title);
-                    _genre = save[3];
-                    gameTitle[i].genre = _genre;                    
-                    Int32.TryParse(save[5], out _players[0]);
-                    Int32.TryParse(save[7], out _players[1]);
-                    gameTitle[i].SetPlayers(_players);
-                    for (int j = 0; j < version.Length; j++)
-                    {
-                        if (saveVersion[i, j] != null)
-                        {
-                            string[] Version = saveVersion[i, j].Split(":", StringSplitOptions.TrimEntries);
-                            gameTitle[i].SetVersion(Version[1]);
-                            for (int k = 0; k < copy.Length; k++)
-                            {
-                                if (saveCopy[i, j, k] != null)
-                                {
-                                    string _copy = saveCopy[i, j, k];
-                                    string[] Copy = _copy.Split(":", StringSplitOptions.TrimEntries);
-                                    if (Copy[5] != null)
-                                        gameTitle[i].SetNotes(Copy[5]);
-                                    else gameTitle[i].SetNotes(null);
-                                    Int32.TryParse(Copy[3], out _price);
-                                    gameTitle[i].SetPrice(_price);
-                                    gameTitle[i].SetGameCondition(Convert.ToChar(Copy[1]));
-                                }
-                                else
-                                    break;
-                            }
-                        }
-                        else
-                        {
-                            break;
-                        }                        
-                    }
-                }
-                else
-                    break;
-            }
         }
     }
 }

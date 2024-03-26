@@ -10,7 +10,7 @@ namespace Projekt_Genspil_v._2
     internal class Game
     {
         int antal;
-        public int i = 0;
+        public int i = -1;
         public int[] j = new int[10];
         public string title;
         public string[] version = new string[10];
@@ -26,9 +26,10 @@ namespace Projekt_Genspil_v._2
             title = Title;
         }
         public void SetVersion(string Version)
-        { 
-            version[i] = Version;
+        {
             i++;
+            version[i] = Version;
+            
             
         }
         public void SetGenre(string Genre)
@@ -37,9 +38,11 @@ namespace Projekt_Genspil_v._2
         }
         public void SetPlayers(int[] Players)
         {
+            int P = 0;
             foreach (var p in Players)
             {
                 players[i] = p;
+                P++;
             }
         }
         public void SetGameCondition(char condition)
@@ -68,7 +71,9 @@ namespace Projekt_Genspil_v._2
             while (players[0] == 0) Int32.TryParse(Console.ReadLine(), out players[0]);
             Console.Write("Maksimum antal spiller: ");
             while (players[1] == 0) Int32.TryParse(Console.ReadLine(), out players[1]);
+
             Console.Write("Hvilken version er spillet: ");
+            i++;
             version[i] = Console.ReadLine();
             Console.Write("Hvilken stand er spillet i: ");
             do
@@ -87,7 +92,6 @@ namespace Projekt_Genspil_v._2
             while (price[i, j[i]] == 0) Int32.TryParse(Console.ReadLine(), out price[i, j[i]]);
             Console.Write("Noter: ");
             notes[i, j[i]] = Console.ReadLine();
-            i++;
             j[i]++;
             antal++;
         }
