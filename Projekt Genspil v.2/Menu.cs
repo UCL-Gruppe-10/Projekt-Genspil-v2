@@ -18,6 +18,7 @@ namespace Projekt_Genspil_v._2
             Console.WriteLine("-----------------------------------\n\n");
             Console.WriteLine("(1) Soeg spil");
             Console.WriteLine("(2) Opret spil");
+            Console.WriteLine("(3) Opdater spil");
             Console.WriteLine("\n(Afslut programmet - tast 0)");
         }
         public void SelectMenuItem()
@@ -37,6 +38,9 @@ namespace Projekt_Genspil_v._2
                         gameTitle[gameItem] = new Game();
                         gameTitle[gameItem].CreateGame();
                         gameItem++;
+                        break;
+                    case 3:
+                        gameTitle[gameItem].UpdateGame();   // Mangler ordenlig tilgang til specifike spil - Lægges i forlængelse af SØG SPIL!
                         break;
                     case 0:
                         Console.WriteLine("Farvel");
