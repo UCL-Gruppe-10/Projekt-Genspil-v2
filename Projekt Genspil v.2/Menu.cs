@@ -8,7 +8,7 @@ namespace Projekt_Genspil_v._2
 {
     internal class Menu
     {
-        public Game[] gameTitle = new Game[50];
+        public Game[] gameTitle = new Game[50];       
         int gameItem = 0;
 
         public void ShowMenu() // Printer den primære menu
@@ -30,13 +30,10 @@ namespace Projekt_Genspil_v._2
                 switch (menuItem)
                 {
                     case 1:
-                        Console.WriteLine("Søg spil");
+                        SearchGames();
                         break;
                     case 2:
-                        Console.Clear();
-                        gameTitle[gameItem] = new Game();
-                        gameTitle[gameItem].CreateGame();
-                        gameItem++;
+                        CreateGame();
                         break;
                     case 0:
                         Console.WriteLine("Farvel");
@@ -49,6 +46,48 @@ namespace Projekt_Genspil_v._2
                 ShowMenu();
             } while (menuItem != 0);
         }
+
+        void SearchGames()
+        { 
+            Console.WriteLine("Indstast titlen på det spil du søger efter:");
+            string searchWord = Console.ReadLine();
+
+            Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
+            bool found = false; 
+            foreach (Game game in gameTitle) // Her gennemgår den Array'et efter søgeordet, hvor den så vil sortere dem efter kriteriet
+            {
+                if (game != null && game.title.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    Console.WriteLine(game.title);
+                    found = true;
+                }
+            }
+            // Vis en besked, hvis der ikke er nogen søgeresultater
+            if (!found)
+            {
+                Console.WriteLine($"Ingen søgeresultater fundet for '{searchWord}'");
+            }
+
+            Console.ReadLine();
+
+        }
+
+        void CreateGame()
+        {
+            if (gameItem < 50)
+            {
+                Console.Clear();
+                gameTitle[gameItem] = new Game();
+                gameTitle[gameItem].CreateGame();
+                gameItem++;
+            }
+            else 
+            {
+                Console.WriteLine("Maximum antal er nået");
+            }
+        }
+
+
         public void ShowInventory()
         {
             Console.Clear();
@@ -62,5 +101,7 @@ namespace Projekt_Genspil_v._2
                     break;
             }
         }
+
+        
     }
 }

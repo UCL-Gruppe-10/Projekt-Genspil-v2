@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Projekt_Genspil_v._2
 {
-    internal class Game
+    public class Game
     {
         int antal;
         int i = 0;
         int j = 0;
-        private string title { get; set; }
+        public string title { get; set; }
         private string[] version = new string[10];
         private string genre { get; set; }
         private int amount;

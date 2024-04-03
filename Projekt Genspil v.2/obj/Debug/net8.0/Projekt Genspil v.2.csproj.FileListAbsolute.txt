@@ -12,3 +12,18 @@ C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter
 C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.pdb
 C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.genruntimeconfig.cache
 C:\Users\pibm9\OneDrive - UCL Erhvervsakademi og Professionshøjskole\Dokumenter\Datamatiker\Programmering\Projekt Genspil v.2\Projekt Genspil v.2\obj\Debug\net8.0\ref\Projekt Genspil v.2.dll
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\bin\Debug\net8.0\Projekt Genspil v.2.exe
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\bin\Debug\net8.0\Projekt Genspil v.2.deps.json
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\bin\Debug\net8.0\Projekt Genspil v.2.runtimeconfig.json
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\bin\Debug\net8.0\Projekt Genspil v.2.dll
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\bin\Debug\net8.0\Projekt Genspil v.2.pdb
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.AssemblyInfoInputs.cache
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.AssemblyInfo.cs
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.csproj.CoreCompileInputs.cache
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.sourcelink.json
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.dll
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\obj\Debug\net8.0\refint\Projekt Genspil v.2.dll
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.pdb
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\obj\Debug\net8.0\Projekt Genspil v.2.genruntimeconfig.cache
+D:\C#\Projekt-Genspil-v2\Projekt Genspil v.2\obj\Debug\net8.0\ref\Projekt Genspil v.2.dll

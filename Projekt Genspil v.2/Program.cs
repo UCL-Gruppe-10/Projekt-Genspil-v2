@@ -10,6 +10,7 @@
             menu.ShowMenu();
             menu.SelectMenuItem();
             menu.ShowInventory();
+
         }
     }
 }
