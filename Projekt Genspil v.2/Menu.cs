@@ -161,7 +161,7 @@ namespace Projekt_Genspil_v._2
             try
             {
                 // Instantiate the StreamWriter object, and create/set it to write/overwrite the variables to .txt
-                StreamWriter sw = new StreamWriter($"C:\\Users\\pibm9\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Dokumenter\\Datamatiker\\Programmering\\Projekt Genspil v.2\\GenspilLAgerListe.txt", false, Encoding.ASCII);
+                StreamWriter sw = new StreamWriter($"GenspilLAgerListe.txt", false, Encoding.ASCII);
                 //write the Title and date of the list/backup
                 sw.WriteLine($"Lagerliste Genspil - {dato}");               
                 for(int a = 0; a < 50; a++)
