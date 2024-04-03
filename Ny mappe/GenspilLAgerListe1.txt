@@ -1,0 +1,11 @@
+Tittel: Ticket to ride : Genre: familie : Minimum spillere: 2 : maximum: 5 
+    Version: Europe
+        Stand: a : Pris: 555 : Note:
+Tittel: Sequence : Genre: Quiz : Minimum spillere: 2 : Maximum: 5
+    Version: Original 
+        Stand: a : Pris: 225 : Note: 
+        Stand: c : Pris: 112 : Note:
+    Version: Junior
+        Stand: b : Pris: 175 : Note:
+    Version: Rejsespil
+        Stand: a : Pris: 220 : Note:
