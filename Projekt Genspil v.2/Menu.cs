@@ -5,6 +5,8 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Channels;
+using System.Reflection;
 
 namespace Projekt_Genspil_v._2
 {
@@ -12,8 +14,10 @@ namespace Projekt_Genspil_v._2
     {
         public Game[] gameTitle = new Game[50];
         int gameItem = 0;
-        
-        
+        private string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+        //public string Path { get => path; set => path = value; }
+
         public void ShowMenu() // Printer den primære menu
         {
             //Console.Clear();
@@ -44,7 +48,8 @@ namespace Projekt_Genspil_v._2
                         ShowMenu();
                         break;
                     case 0:
-                        PrinttxtFile();
+                        //PrinttxtFile();
+                        PrintList(gameTitle);
                         Console.WriteLine("Farvel");
                         break;
                     default:
@@ -64,6 +69,49 @@ namespace Projekt_Genspil_v._2
                 }
                 else
                     break;
+            }
+        }
+        public void PrintList(Game[] game)
+        {
+            using (StreamWriter sw = new StreamWriter(Path.Combine(path, "GenspilLagerliste.txt"), false, Encoding.ASCII))
+            {
+                DateTime date = DateTime.Now;
+                string dato = date.ToShortDateString();
+                
+                sw.WriteLine($"Lagerliste Genspil - {dato}");
+                for (int i = 0; i < 50; i++)
+                {
+                    // Tester om der er en tittel i arrayet, og er der det, skrives tittel, genre, og antal spillere i samme string.
+                    if (game[i] != null)
+                    {
+                        string title = "";
+                        sw.WriteLine(game[i].GetTitle(title));
+                        //saveTitle[i] = $"Tittel: {gameTitle[i].title} : Genre: {gameTitle[i].genre} : Minimum spillere: {gameTitle[i].players[0]} : maximum: {gameTitle[i].players[1]} ";
+                        for (int j = 0; j < 10; j++)
+                        {
+                            // Tester om der er en version, og i så fald, gemmer versionen i en string
+                            if (game[i].version[j] != null)
+                            {
+                                sw.WriteLine("Version: " + game[i].version[j]);
+                                for (int k = 0; k < 20; k++)
+                                {
+                                    // Tester om der er en pris, og gemmer i så fald udgavens stand, pris, og evt. noter i samme string
+                                    if (game[i].price[j, k] != 0)
+                                    {
+                                        sw.WriteLine($"Stand: {game[i].gameCondiditon[j, k]} : Pris: {game[i].price[j, k]} : Note: {game[i].notes[j, k]}");
+                                    }
+                                    else
+                                        break;
+                                }
+                            }
+                            else
+                                break;
+                        }
+                    }
+                    else
+                        break;
+                }
+                Console.WriteLine("Filer gemt til fil.\nFarvel.");
             }
         }
         public void PrinttxtFile()
@@ -107,7 +155,7 @@ namespace Projekt_Genspil_v._2
             try
             {
                 // Instantiate the StreamWriter object, and create/set it to write/overwrite the variables to .txt
-                StreamWriter sw = new StreamWriter($"C:\\Users\\pibm9\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Dokumenter\\Datamatiker\\Programmering\\Projekt Genspil v.2\\GenspilLAgerListe.txt", false, Encoding.ASCII);
+                StreamWriter sw = new StreamWriter($"C:\\Projekt Genspil v.2\\GenspilLAgerListe.txt", false, Encoding.ASCII);
                 //write the Title and date of the list/backup
                 sw.WriteLine($"Lagerliste Genspil - {dato}");               
                 for(int a = 0; a < 50; a++)
@@ -164,7 +212,7 @@ namespace Projekt_Genspil_v._2
             {
                 int t = -1, v = -1, c = -1;
                 // Pass the file path and file to the StreamReader constructor.
-                StreamReader sr = new StreamReader("C:\\Users\\pibm9\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Dokumenter\\Datamatiker\\Programmering\\Projekt Genspil v.2\\GenspilLAgerListe.txt");
+                StreamReader sr = new StreamReader(Path.Combine(path, "GenspilLagerliste.txt"));
                 
                 while (line != null)
                 {
@@ -236,6 +284,7 @@ namespace Projekt_Genspil_v._2
                 Console.WriteLine("Exception: " + e.Message);
             }
             finally { Console.WriteLine("Executing finally block"); }
+            Console.ReadKey();
         }
     }
 }

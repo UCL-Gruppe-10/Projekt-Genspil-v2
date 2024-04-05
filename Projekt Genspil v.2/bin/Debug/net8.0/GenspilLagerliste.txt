@@ -1,4 +1,4 @@
-$"Lagerliste Genspil - {dato}"
+Lagerliste Genspil - 05-04-2024
 Tittel:   Ticket to ride   : Genre:   familie   : Minimum spillere: 2 : maximum: 5 
 Version:   Europe
 Stand: a : Pris: 555 : Note:   
