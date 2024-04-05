@@ -19,11 +19,18 @@ namespace Projekt_Genspil_v._2
             //Console.Clear();
             Console.WriteLine("Genspil");
             Console.WriteLine("-----------------------------------\n\n");
-            Console.WriteLine("(1) Soeg spil");
-            Console.WriteLine("(2) Opret spil");
-            Console.WriteLine("(3) Opdater spil");
+            // Sorteringsmuligheder efter spilnavn, genre og andre relevante kriterier.
+            Console.Write("(1) Tilgå spil"); // rediger funktion herunder
+            // Mulighed for at søge efter spil baseret på forskellige kriterier, såsom genre, antal spillere, stand, pris og navn.
+            // Skal evt kunne opdatere forspørgsel og salg
+            Console.WriteLine(" - Søg, Rediger, Salg og forspørgsel"); 
+            Console.WriteLine("(2) Opret spil"); // opdater koder til arbejde med persistens.
+            // Mulighed for at se, hvilke spil der er tilgængelige i lageret, og hvilke der er reserveret eller bestilt, og mulighed for en udskrift.
+            // Sorteringsmuligheder efter spilnavn, genre og andre relevante kriterier.
+            Console.WriteLine("(3) Lagerliste"); 
             Console.WriteLine("\n(Afslut programmet - tast 0)");
         }
+
         public void SelectMenuItem()
         {
             int menuItem = -1;
