@@ -110,12 +110,12 @@ namespace Projekt_Genspil_v._2
             {
                 if (version[g] != null)
                 {
-                    Console.WriteLine("Udgave        : " + version[g]);
+                    Console.WriteLine($"{g}) Udgave        : " + version[g]);
                     for (int n = 0; n < price.Length; n++)
                     {
                         if (price[g, n] != 0)
                         {
-                            Console.WriteLine($"     Index: {n} | Stand: {gameCondiditon[g, n]} | Pris {price[g, n]} | Noter: {notes[g, n]}");
+                            Console.WriteLine($"     {g}, {n})Index: {n} | Stand: {gameCondiditon[g, n]} | Pris {price[g, n]} | Noter: {notes[g, n]}");
                         }
                         else
                             break;
@@ -259,6 +259,23 @@ namespace Projekt_Genspil_v._2
             return saveVersion[saveVersion.Length];
             
 
+        }
+        public void PrintListe()
+        {
+            int copy = 0;
+            Console.WriteLine($"Tittel: {title} : Genre: {genre} : Minimum spillere: {players[0]} : maximum: {players[1]} ");
+            for(int i = 0;i < version.Length;i++)
+            {
+                if (version[i] != null)
+                {
+                    for (int j = 0; j < price.Length; j++)
+                        if (price[i, j] != 0)
+                            copy++;
+                        else
+                            break;
+                    Console.WriteLine($"    Version: {version[i]} | Antal: {copy}");
+                }
+            }
         }
     }
 }

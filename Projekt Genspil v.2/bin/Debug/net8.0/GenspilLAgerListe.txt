@@ -1,22 +1,22 @@
 Lagerliste Genspil - 06-04-2024
-Tittel:      Ticket to ride      : Genre:      familie      : Minimum spillere: 2 : maximum: 5 
-    Version:      Europe
-        Stand: a : Pris: 555 : Note:      
-        Stand: c : Pris: 150 : Note:      Resserveret af Lisbeth Hansen
-Tittel:      Sequence      : Genre:      Quiz      : Minimum spillere: 2 : maximum: 5 
-    Version:      Original
-        Stand: a : Pris: 225 : Note:      
-        Stand: b : Pris: 175 : Note:      Venteliste
-        Stand: c : Pris: 112 : Note:      
-    Version:      Junior
-        Stand: a : Pris: 200 : Note:      
-        Stand: b : Pris: 175 : Note:      
-        Stand: c : Pris: 150 : Note:      Venteliste
-    Version:      Rejsespil
-        Stand: a : Pris: 220 : Note:      
-Tittel:     Risk     : Genre:     Strategi     : Minimum spillere: 2 : maximum: 6 
-    Version:     Ringenes herre
-        Stand: a : Pris: 285 : Note:     
-Tittel: Analrytterne fra ARK : Genre: erotik : Minimum spillere: 1 : maximum: 2 
-    Version: Den brune noughat ridder
-        Stand: b : Pris: 250 : Note: lettere brugt, med en harsk duft
+Tittel:       Ticket to ride       : Genre:       familie       : Minimum spillere: 2 : maximum: 5 
+Version:       Europe
+Stand: a : Pris: 555 : Note:       
+Stand: c : Pris: 150 : Note:       Resserveret af Lisbeth Hansen
+Tittel:       Sequence       : Genre:       Quiz       : Minimum spillere: 2 : maximum: 5 
+Version:       Original
+Stand: a : Pris: 225 : Note:       
+Stand: b : Pris: 175 : Note:       Venteliste
+Stand: c : Pris: 112 : Note:       
+Version:       Junior
+Stand: a : Pris: 200 : Note:       
+Stand: b : Pris: 175 : Note:       
+Stand: c : Pris: 150 : Note:       Venteliste
+Version:       Rejsespil
+Stand: a : Pris: 220 : Note:       
+Tittel:      Risk      : Genre:      Strategi      : Minimum spillere: 2 : maximum: 6 
+Version:      Ringenes herre
+Stand: a : Pris: 285 : Note:      
+Tittel:  Analrytterne fra ARK  : Genre:  erotik  : Minimum spillere: 1 : maximum: 2 
+Version:  Den brune noughat ridder
+Stand: b : Pris: 250 : Note:  lettere brugt, med en harsk duft
