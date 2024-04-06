@@ -6,8 +6,9 @@
         {
             Game spil = new Game();
             Menu menu = new Menu();
+            //Datahandler saveFile = new Datahandler();
 
-            menu.ReadtxtFile();
+            //menu.ReadtxtFile();
             //menu.SaveIndex();
             menu.ShowInventory();
             menu.ShowMenu();

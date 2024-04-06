@@ -102,7 +102,7 @@ namespace Projekt_Genspil_v._2
         }
         public void GetGame()
         {
-            Console.Clear();
+            //Console.Clear();
             Console.Write("Tittel        : " + title);
             Console.Write(" | Genre         : " + genre);
             Console.WriteLine(" | Antal spillere: {0} - {1}", players[0], players[1]);

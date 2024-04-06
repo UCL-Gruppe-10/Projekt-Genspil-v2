@@ -10,10 +10,24 @@ namespace Projekt_Genspil_v._2
 {
     internal class Menu
     {
-        public Game[] gameTitle = new Game[50];       
+        public Game[] gameTitle = new Game[50];
+        Datahandler saveTitle = new Datahandler();
         int gameItem = 0;
-        
-        
+        public int GameItem 
+        { 
+            set { gameItem = value; } 
+            get { return gameItem; }
+        }
+
+        public Menu()
+        {
+            //Game[] gameTitle = new Game[50];
+            Datahandler saveTitle = new Datahandler();
+            saveTitle.ReadList(gameTitle, gameItem);
+
+            GameItem = saveTitle.Item;
+        }
+
         public void ShowMenu() // Printer den primære menu
         {
             //Console.Clear();
@@ -225,7 +239,7 @@ namespace Projekt_Genspil_v._2
             {
                 int t = -1, v = -1, c = -1;
                 // Pass the file path and file to the StreamReader constructor.
-                StreamReader sr = new StreamReader("C:\\Users\\pibm9\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Dokumenter\\Datamatiker\\Programmering\\Projekt Genspil v.2\\GenspilLAgerListe.txt");
+                StreamReader sr = new StreamReader("C:\\Users\\pibm9\\OneDrive - UCL Erhvervsakademi og Professionshøjskole\\Dokumenter\\Datamatiker\\Programmering\\Projekt-Genspil-v2\\GenspilLAgerListe.txt");
                 
                 while (line != null)
                 {
@@ -297,6 +311,7 @@ namespace Projekt_Genspil_v._2
                 Console.WriteLine("Exception: " + e.Message);
             }
             finally { Console.WriteLine("Executing finally block"); }
+            Console.ReadKey();
         }
 
     }
