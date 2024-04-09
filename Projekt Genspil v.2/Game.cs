@@ -9,127 +9,151 @@ namespace Projekt_Genspil_v._2
 {
     public class Game
     {
-        int antal;
+        private string _title;
+        private string _version;
+        private string _genre;
+        private int _minPlayers;
+        private int _maxPlayers;
+        private string _condition;
+        private int _price;
+        private string _notes;
 
-        public int i = -1;
-        public int[] j = new int[10];
-        public string title;
-        public string[] version = new string[10];
-        public string genre { get; set; }
-        private int amount;
-        public int[] players = new int[2];  // Minimum til maksimum spillere
-        public char[,] gameCondiditon = new char[10, 20];
-        public int[,] price = new int[10, 20];
-        public string[,] notes = new string[10, 20];
+        public Game(string title, string version, string genre, int minPlayers, int maxplayers, string condition, int price, string notes)
+        {
+            Title = title;
+            Version = version;
+            Genre = genre;
+            MinPlayers = minPlayers;
+            MaxPlayers = maxplayers;
+            Condition = condition;
+            Price = price;
+            Notes = notes;
+        }
 
-        public void SetTitle(string Title)
+        public string Title
         {
-            title = Title;
-        }
-        public void SetVersion(string Version)
-        {
-            i++;
-            version[i] = Version;
-            
-            
-        }
-        public void SetGenre(string Genre)
-        {
-            genre = Genre;
-        }
-        public void SetPlayers(int[] Players)
-        {
-            int P = 0;
-            foreach (var p in Players)
+            get { return _title; }
+            set
             {
-                players[i] = p;
-                P++;
+                if (value != null && value.Length > 0)
+                {
+                    _title = value;
+                }
             }
         }
-        public void SetGameCondition(char condition)
+        public string Version
         {
-            gameCondiditon[(i - 1), j[i]] = condition;
-            j[i] = j[i] +1;
-        }
-        public void SetPrice(int Price)
-        {
-            price[(i - 1), j[i]] = Price;
-        }
-        public void SetNotes(string Notes)
-        {
-            if (Notes != null) notes[(i - 1), j[i]] = Notes;
-            else
-                notes[(i - 1), j[i]] = null;
-        }
-
-
-        public void CreateGame()
-        {
-            Console.Write("Hvad hedder spillet: ");
-            title = Console.ReadLine();
-            Console.Write("Hvilken genre er spillet: ");
-            genre = Console.ReadLine();
-            Console.Write("Minimum antal spiller? ");
-            while (players[0] < 1) Int32.TryParse(Console.ReadLine(), out players[0]);
-            Console.Write("Maksimum antal spiller: ");
-
-            while (players[1] < 1 && players[1] < players[0]) Int32.TryParse(Console.ReadLine(), out players[1]);
-
-
-
-            Console.Write("Hvilken version er spillet: ");
-            i++;
-            version[i] = Console.ReadLine();
-            Console.Write("Hvilken stand er spillet i: ");
-            do
+            get { return _version; }
+            set
             {
-                try
+                if (value != null && value.Length > 0)
                 {
-                    gameCondiditon[i, j[i]] = Convert.ToChar(Console.ReadLine());
-                    char.ToUpper(gameCondiditon[i, j[i]]); 
+                    _version = value;
                 }
-                catch
-                {
-                    Console.WriteLine("Forkert input - prøv igen");
-                }
-            } while (gameCondiditon[i, j[i]] == null);
-            Console.Write("Hvad koster spillet: ");
-            while (price[i, j[i]] == 0) Int32.TryParse(Console.ReadLine(), out price[i, j[i]]);
-            Console.Write("Noter: ");
-            notes[i, j[i]] = Console.ReadLine();
-            j[i]++;
-            antal++;
-        }
-        public void GetGame()
-        {
-            //Console.Clear();
-            Console.Write("Tittel        : " + title);
-            Console.Write(" | Genre         : " + genre);
-            Console.WriteLine(" | Antal spillere: {0} - {1}", players[0], players[1]);
-            for (int g = 0; g < version.Length; g++)
-            {
-                if (version[g] != null)
-                {
-                    Console.WriteLine($"{g}) Udgave        : " + version[g]);
-                    for (int n = 0; n < price.Length; n++)
-                    {
-                        if (price[g, n] != 0)
-                        {
-                            Console.WriteLine($"     {g}, {n})Index: {n} | Stand: {gameCondiditon[g, n]} | Pris {price[g, n]} | Noter: {notes[g, n]}");
-                        }
-                        else
-                            break;
-                    }
-                }
-                else
-                    break;
             }
+        }
+        public string Genre
+        {
+            get { return _genre; }
+            set
+            {
+                if (value != null && value.Length > 0)
+                {
+                    _genre = value;
+                }
+            }
+        }
+        public int MinPlayers
+        {
+            get { return _minPlayers; }
+            set
+            {
+                if (value > 0)
+                {
+                    _minPlayers = value;
+                }
+            }
+        }
+        public int MaxPlayers
+        {
+            get { return _maxPlayers; }
+            set
+            {
+                if (value > 0)
+                {
+                    _maxPlayers = value;
+                }
+            }
+        }
+        public string Condition
+        {
+            get { return _condition; }
+            set
+            {
+                if (value != null && value.Length > 0)
+                {
+                    _condition = value;
+                }
+            }
+        }
+        public int Price
+        {
+            get { return _price; }
+            set
+            {
+                if (value > 0)
+                {
+                    _price = value;
+                }
+            }
+        }
+        public string Notes
+        {
+            get { return _notes; }
+            set
+            {
+                if (value != null && value.Length > 0)
+                {
+                    _notes = value;
+                }
+            }
+        }
+
+        /*public void CreateGame()  // Ligger nu i Menu.cs
+        {
+            Console.WriteLine(" - Information til nyt spil - ");
+            Console.Write("Navn: ");
+            Title = Console.ReadLine();
+            Console.Write("Version: ");
+            Version = Console.ReadLine();
+            Console.Write("Genre: ");
+            Genre = Console.ReadLine();
+            Console.Write("Minimum spillere: ");
+            MinPlayers = int.Parse(Console.ReadLine());
+            Console.Write("Maximum spillere: ");
+            MaxPlayers = int.Parse(Console.ReadLine());
+            Console.Write("Stand: ");
+            Condition = Console.ReadLine();
+            Console.Write("Pris: ");
+            Price = int.Parse(Console.ReadLine());
+            Console.Write("Notes: ");
+            Notes = Console.ReadLine();
+        }*/
+
+        public void ShowGame()
+        {
+            //Console.WriteLine($"{Title}, {Version}, {Genre}, {MinPlayers} til {MaxPlayers}, {Condition}, {Price}, {Notes}");
+            Console.WriteLine($"{_title}, {_version}, {_genre}, {_minPlayers} til {_maxPlayers}, {_condition}, {_price}, {_notes}");
+        }
+
+        public string ExportGame()
+        {
+            return $"{Title};{Version};{Genre};{MinPlayers};{MaxPlayers};{Condition};{Price};{Notes}";
         }
 
         public void UpdateGame()
         {
-            GetGame();
-            string updateInfo = null;
+            ShowGame();
             string updateSelector = null;
             bool updateContinue = true;
             do
@@ -137,7 +161,7 @@ namespace Projekt_Genspil_v._2
                 Console.WriteLine("Hvad ønsker du at opdatere? 0 for at afslutte.");
                 do
                 {
-                    updateSelector = Console.ReadLine();
+                    updateSelector = Console.ReadLine().ToLower();
                 } while (updateSelector == null || updateSelector.Length == 0);
 
                 switch (updateSelector)
@@ -146,89 +170,41 @@ namespace Projekt_Genspil_v._2
                         updateContinue = false;
                         break;
                     case "1":
-                    case "a":
                     case "titel":
-                    case "Titel":
-                    case "TITEL":
                         Console.Write("Indtast ny titel: ");
-                        do
-                        {
-                            updateInfo = Console.ReadLine();
-                        } while (updateInfo == null || updateInfo.Length == 0);
-                        title = updateInfo;
+                        Title = UpdateNullcheck();
                         break;
                     case "2":
-                    case "b":
                     case "genre":
-                    case "Genre":
-                    case "GENRE":
                         Console.Write("Indtast ny genre: ");
-                        do
-                        {
-                            updateInfo = Console.ReadLine();
-                        } while (updateInfo == null || updateInfo.Length == 0);
-                        genre = updateInfo;
+                        Genre = UpdateNullcheck();
                         break;
                     case "3":
-                    case "c":
                     case "spillere":
-                    case "Spillere":
-                    case "SPILLERE":
                         Console.Write("Indtast nyt minimum antal spillere: ");
-                        while (players[0] < 1) Int32.TryParse(Console.ReadLine(), out players[0]);
+                        while (MinPlayers < 1) Int32.TryParse(Console.ReadLine(), out _minPlayers);
                         Console.Write("Indtast nyt maksimum antal spillere: ");
-                        while (players[1] < 1 && players[1] < players[0]) Int32.TryParse(Console.ReadLine(), out players[1]);
+                        while (MaxPlayers < 1 && MaxPlayers < MinPlayers) Int32.TryParse(Console.ReadLine(), out _maxPlayers);
                         break;
                     case "4":
-                    case "d":
                     case "version":
-                    case "Version":
-                    case "VERSION":
                         Console.Write("Indtast ny version: ");
-                        do
-                        {
-                            updateInfo = Console.ReadLine();
-                        } while (updateInfo == null || updateInfo.Length == 0);
-                        version[i] = updateInfo;
+                        Version = UpdateNullcheck();
                         break;
                     case "5":
-                    case "e":
                     case "stand":
-                    case "Stand":
-                    case "STAND":
                         Console.Write("Indtast ny stand: ");
-                        do
-                        {
-                            try
-                            {
-                                gameCondiditon[i, j[i]] = Convert.ToChar(Console.ReadLine());
-                                char.ToUpper(gameCondiditon[i, j[i]]);
-                            }
-                            catch
-                            {
-                                Console.WriteLine("Forkert input - prøv igen");
-                            }
-                        } while (gameCondiditon[i, j[i]] == null);
+                        Condition = UpdateNullcheck();
                         break;
                     case "6":
-                    case "f":
                     case "pris":
-                    case "Pris":
-                    case "PRIS":
                         Console.Write("Indtast ny pris: ");
-                        while (price[i, j[i]] == 0) Int32.TryParse(Console.ReadLine(), out price[i, j[i]]);
+                        while (Price == 0) Int32.TryParse(Console.ReadLine(), out _price);
                         break;
                     case "7":
-                    case "g":
-                    case "note":
-                    case "Note":
-                    case "NOTE":
-                        Console.Write("Indtast ny note: ");
-                        do
-                        {
-                            updateInfo = Console.ReadLine();
-                        } while (updateInfo == null || updateInfo.Length == 0);
-                        notes[i, j[i]] = updateInfo;
+                    case "noter":
+                        Console.Write("Indtast ny noter: ");
+                        Notes = UpdateNullcheck();
                         break;
                     default:
                         Console.WriteLine("Ugyldigt redigerings kriterie");
@@ -238,44 +214,15 @@ namespace Projekt_Genspil_v._2
             } while (updateContinue == true);
         }
 
-        public string GetTitle(string saveTitle)
+        private string UpdateNullcheck()
         {
-            saveTitle = $"Tittel: {title} : Genre: {genre} : Minimum spillere: {players[0]} : maximum: {players[1]} ";
-            return saveTitle;
-        }
-        public string GetVersion(string[] saveVersion)
-        {
-            saveVersion = new string[50];
-            for (int i = 0; i < saveVersion.Length; i++)
+            string updateInfo = null;
+            do
             {
-                if (saveVersion[i] != null)
-                {
-                    saveVersion[i] = version[i];
+                updateInfo = Console.ReadLine();
+            } while (updateInfo == null || updateInfo.Length == 0);
 
-                    
-                }
-                else break;                
-            }
-            return saveVersion[saveVersion.Length];
-            
-
-        }
-        public void PrintListe()
-        {
-            int copy = 0;
-            Console.WriteLine($"Tittel: {title} : Genre: {genre} : Minimum spillere: {players[0]} : maximum: {players[1]} ");
-            for(int i = 0;i < version.Length;i++)
-            {
-                if (version[i] != null)
-                {
-                    for (int j = 0; j < price.Length; j++)
-                        if (price[i, j] != 0)
-                            copy++;
-                        else
-                            break;
-                    Console.WriteLine($"    Version: {version[i]} | Antal: {copy}");
-                }
-            }
+            return updateInfo;
         }
     }
 }
