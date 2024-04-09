@@ -7,7 +7,7 @@ namespace Projekt_Genspil_v._2
     internal class DataHandler
     {
         private string docPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        private int _item = 0;
+        private int _item = -1;
         public int Item
         {
             get { return _item; }
@@ -27,40 +27,97 @@ namespace Projekt_Genspil_v._2
 
 
 
+        //public List<Game> LoadGames()
+        //{
+        //    List<Game> gameList = new List<Game>();
+
+        //    using (StreamReader sr = new StreamReader(Path.Combine(docPath, DataFileName)))
+        //    {
+        //        foreach (string line in sr.ReadToEnd().Trim().Split('\n'))
+        //        {
+        //            string[] parts = line.Trim().Split(';');
+
+        //            if (parts.Length == 8)
+        //            {
+        //                string title = parts[0];
+        //                string version = parts[1];
+        //                string genre = parts[2];
+        //                int.TryParse(parts[3], out int minPlayers);
+        //                int.TryParse(parts[4], out int maxPlayers);
+        //                string condition = parts[5];
+        //                int.TryParse(parts[6], out int price);
+        //                string notes = parts[7];
+
+        //                Game game = new Game(title, version, genre, minPlayers, maxPlayers, condition, price, notes);
+        //                gameList.Add(game);
+        //                Item++;
+        //            }
+        //            else if (line.Contains("Lagerliste Genspil - "))
+        //            {
+        //                Console.WriteLine("Indhenter information fra"
+        //                    + line.Substring(line.IndexOf(" - ")+2));
+        //            }
+        //            else
+        //            {
+        //                throw new InvalidDataException("Dataformat in file not correct");
+        //            }
+        //        }
+        //    }
+        //    return gameList;
+        //}
         public List<Game> LoadGames()
         {
             List<Game> gameList = new List<Game>();
 
+            
+            
+
             using (StreamReader sr = new StreamReader(Path.Combine(docPath, DataFileName)))
             {
-                foreach (string line in sr.ReadToEnd().Trim().Split('\n'))
+                string line = sr.ReadLine();
+                bool lines = true;
+                while (lines == true)
                 {
-                    string[] parts = line.Trim().Split(';');
+                    
+                    line = sr.ReadLine();
+                    if (line == null)
+                        break;
+                    string[] parts = line.Split(':');
 
-                    if (parts.Length == 8)
+                    if (parts[0] == "Tittel")
                     {
-                        string title = parts[0];
-                        string version = parts[1];
-                        string genre = parts[2];
-                        int.TryParse(parts[3], out int minPlayers);
-                        int.TryParse(parts[4], out int maxPlayers);
-                        string condition = parts[5];
-                        int.TryParse(parts[6], out int price);
-                        string notes = parts[7];
-
-                        Game game = new Game(title, version, genre, minPlayers, maxPlayers, condition, price, notes);
-                        gameList.Add(game);
                         Item++;
+                        string title = parts[1];
+                        string genre = parts[3];
+                        int.TryParse(parts[5], out int minPlayers);
+                        int.TryParse(parts[7], out int maxPlayers);
+                        Game game = new Game(title, genre, minPlayers, maxPlayers);
+                        gameList.Add(game);
                     }
+                    if (parts[0] == "Version")
+                    {
+                        //Item++;
+                        string version = parts[1];
+                        gameList[Item].CreateVersion(version);
+
+                    }
+                    if (parts[0] == "Stand")
+                    {
+                        string condition = parts[1];
+                        int.TryParse(parts[3], out int price);
+                        string notes = parts[5];
+                        gameList[Item].AddCopy(condition, price, notes);
+                    }
+
                     else if (line.Contains("Lagerliste Genspil - "))
                     {
                         Console.WriteLine("Indhenter information fra"
-                            + line.Substring(line.IndexOf(" - ")+2));
+                            + line.Substring(line.IndexOf(" - ") + 2));
                     }
-                    else
-                    {
-                        throw new InvalidDataException("Dataformat in file not correct");
-                    }
+                    //else
+                    //{
+                    //    throw new InvalidDataException("Dataformat in file not correct");
+                    //}
                 }
             }
             return gameList;
@@ -76,7 +133,7 @@ namespace Projekt_Genspil_v._2
                 //sw.WriteLine($"Lagerliste Genspil - {date.ToShortDateString()}");
                 foreach (Game game in inputGame)
                 {
-                    sw.WriteLine(game.ExportGame());
+                    //sw.WriteLine(game.ExportGame());
                 }
             }
             

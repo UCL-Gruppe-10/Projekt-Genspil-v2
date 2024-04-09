@@ -231,7 +231,7 @@ namespace Projekt_Genspil_v._2
                         searchCriteria = Console.ReadLine();
                         if (searchCriteria != null && searchCriteria.Length == 1)
                         {
-                            SearchGamesCondition(searchCriteria);
+                            //SearchGamesCondition(searchCriteria);
                         }
                         break;
                     case 5:
@@ -239,7 +239,7 @@ namespace Projekt_Genspil_v._2
                         searchCriteria = Console.ReadLine();
                         if (searchCriteria != null && int.Parse(searchCriteria) > 0)
                         {
-                            SearchGamesPrice(int.Parse(searchCriteria));
+                            //SearchGamesPrice(int.Parse(searchCriteria));
                         }
                         break;
                     case 6:
@@ -247,7 +247,7 @@ namespace Projekt_Genspil_v._2
                         searchCriteria = Console.ReadLine();
                         if (searchCriteria != null && searchCriteria.Length > 0)
                         {
-                            SearchGamesNotes(searchCriteria);
+                            //SearchGamesNotes(searchCriteria);
                         }
                         break;
                     default:
@@ -329,72 +329,72 @@ namespace Projekt_Genspil_v._2
         }
 
 
-        void SearchGamesCondition(string searchWord)
-        {
-            Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
-            bool found = false;
-            foreach (Game game in gameInstance)
-            {
-                if (game != null && game.Condition.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
-                {
-                    Console.WriteLine($"{game.Title}, {game.Condition}");
-                    found = true;
-                }
-            }
+        //void SearchGamesCondition(string searchWord)
+        //{
+        //    Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
+        //    bool found = false;
+        //    foreach (Game game in gameInstance)
+        //    {
+        //        if (game != null && game.Condition.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
+        //        {
+        //            Console.WriteLine($"{game.Title}, {game.Condition}");
+        //            found = true;
+        //        }
+        //    }
 
-            if (!found)
-            {
-                Console.WriteLine($"Ingen søgeresultater fundet for '{searchWord}'");
-            }
+        //    if (!found)
+        //    {
+        //        Console.WriteLine($"Ingen søgeresultater fundet for '{searchWord}'");
+        //    }
 
-            Console.WriteLine("Tryk Enter for at fortsætte...");
-            Console.ReadLine();
-        }
+        //    Console.WriteLine("Tryk Enter for at fortsætte...");
+        //    Console.ReadLine();
+        //}
 
-        void SearchGamesPrice(int searchWord)
-        {
+        //void SearchGamesPrice(int searchWord)
+        //{
 
-            Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
-            bool found = false;
-            foreach (Game game in gameInstance)
-            {
-                if (game != null && game.Price < searchWord)
-                {
-                    Console.WriteLine($"{game.Title}, {game.Price}");
-                    found = true;
-                }
-            }
+        //    Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
+        //    bool found = false;
+        //    foreach (Game game in gameInstance)
+        //    {
+        //        if (game != null && game.Price < searchWord)
+        //        {
+        //            Console.WriteLine($"{game.Title}, {game.Price}");
+        //            found = true;
+        //        }
+        //    }
 
-            if (!found)
-            {
-                Console.WriteLine($"Ingen søgeresultater fundet for '{searchWord}'");
-            }
+        //    if (!found)
+        //    {
+        //        Console.WriteLine($"Ingen søgeresultater fundet for '{searchWord}'");
+        //    }
 
-            Console.WriteLine("Tryk Enter for at fortsætte...");
-            Console.ReadLine();
-        }
+        //    Console.WriteLine("Tryk Enter for at fortsætte...");
+        //    Console.ReadLine();
+        //}
 
 
-        void SearchGamesNotes(string searchWord)
-        {
-            Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
-            bool found = false;
-            foreach (Game game in gameInstance)
-            {
-                if (game != null && game.Notes.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
-                {
-                    Console.WriteLine($"{game.Title}, {game.Notes}");
-                    found = true;
-                }
-            }
+        //void SearchGamesNotes(string searchWord)
+        //{
+        //    Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
+        //    bool found = false;
+        //    foreach (Game game in gameInstance)
+        //    {
+        //        if (game != null && game.Notes.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
+        //        {
+        //            Console.WriteLine($"{game.Title}, {game.Notes}");
+        //            found = true;
+        //        }
+        //    }
 
-            if (!found)
-            {
-                Console.WriteLine($"Ingen søgeresultater fundet for '{searchWord}'");
-            }
+        //    if (!found)
+        //    {
+        //        Console.WriteLine($"Ingen søgeresultater fundet for '{searchWord}'");
+        //    }
 
-            Console.WriteLine("Tryk Enter for at fortsætte...");
-            Console.ReadLine();
-        }
+        //    Console.WriteLine("Tryk Enter for at fortsætte...");
+        //    Console.ReadLine();
+        //}
     }
 }

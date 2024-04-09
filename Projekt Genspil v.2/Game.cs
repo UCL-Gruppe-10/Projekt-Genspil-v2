@@ -9,27 +9,43 @@ namespace Projekt_Genspil_v._2
 {
     public class Game
     {
+        public GameVersion tempVersion = new GameVersion();
+        public List<GameVersion> versions = new List<GameVersion>();
         private string _title;
-        private string _version;
         private string _genre;
         private int _minPlayers;
         private int _maxPlayers;
-        private string _condition;
-        private int _price;
-        private string _notes;
+        int iVersion = -1;
 
-        public Game(string title, string version, string genre, int minPlayers, int maxplayers, string condition, int price, string notes)
+
+        public Game(string title, string version, string genre, int minPlayers, int maxPlayers, string condition, int price, string notes)
         {
             Title = title;
-            Version = version;
             Genre = genre;
             MinPlayers = minPlayers;
-            MaxPlayers = maxplayers;
-            Condition = condition;
-            Price = price;
-            Notes = notes;
+            MaxPlayers = maxPlayers;
+            GameVersion tempVersion = new GameVersion() { Version = version, Condition = condition, Price = price, Notes = notes };
+            iVersion++;
         }
-
+        public Game(string title, string version, string genre, int minPlayers, int maxPlayers, string condition, int price)
+        {
+            Title = title;
+            Genre = genre;
+            MinPlayers = minPlayers;
+            MaxPlayers = maxPlayers;
+            GameVersion tempVersion = new GameVersion() { Version = version, Condition = condition, Price = price };
+            iVersion++;
+        }
+        public Game(string title, string genre, int minPlayers, int maxPlayers)
+        {
+            Title = title;
+            Genre = genre;
+            MinPlayers = minPlayers;
+            MaxPlayers = maxPlayers;
+        }
+        public Game()
+        {
+        }
         public string Title
         {
             get { return _title; }
@@ -41,17 +57,7 @@ namespace Projekt_Genspil_v._2
                 }
             }
         }
-        public string Version
-        {
-            get { return _version; }
-            set
-            {
-                if (value != null && value.Length > 0)
-                {
-                    _version = value;
-                }
-            }
-        }
+        
         public string Genre
         {
             get { return _genre; }
@@ -85,38 +91,26 @@ namespace Projekt_Genspil_v._2
                 }
             }
         }
-        public string Condition
+        public List<GameVersion> CreateVersion(string _version, string _condition, int _price, string _notes)
         {
-            get { return _condition; }
-            set
-            {
-                if (value != null && value.Length > 0)
-                {
-                    _condition = value;
-                }
-            }
+            GameVersion version = new GameVersion(_version, _condition, _price, _notes);
+            versions.Add(version);
+            iVersion++;
+            return versions;
         }
-        public int Price
+        public List<GameVersion> CreateVersion(string _version, string _condition, int _price)
         {
-            get { return _price; }
-            set
-            {
-                if (value > 0)
-                {
-                    _price = value;
-                }
-            }
+            GameVersion version = new GameVersion() { Version = _version, Condition = _condition, Price = _price };
+            versions.Add(version);
+            iVersion++;
+            return versions;
         }
-        public string Notes
+        public List<GameVersion> CreateVersion(string _version)
         {
-            get { return _notes; }
-            set
-            {
-                if (value != null && value.Length > 0)
-                {
-                    _notes = value;
-                }
-            }
+            GameVersion version = new GameVersion() { Version = _version };
+            versions.Add(version);
+            iVersion++;
+            return versions;
         }
 
         /*public void CreateGame()  // Ligger nu i Menu.cs
@@ -143,13 +137,19 @@ namespace Projekt_Genspil_v._2
         public void ShowGame()
         {
             //Console.WriteLine($"{Title}, {Version}, {Genre}, {MinPlayers} til {MaxPlayers}, {Condition}, {Price}, {Notes}");
-            Console.WriteLine($"{_title}, {_version}, {_genre}, {_minPlayers} til {_maxPlayers}, {_condition}, {_price}, {_notes}");
+            Console.WriteLine($"{_title}, {_genre}, {_minPlayers} til {_maxPlayers}");
         }
 
-        public string ExportGame()
-        {
-            return $"{Title};{Version};{Genre};{MinPlayers};{MaxPlayers};{Condition};{Price};{Notes}";
-        }
+        //public string ExportGame(List<GameVersion> versions)
+        //{
+            
+        //    foreach(List<GameVersion>version in versions)
+        //    {
+        //        versions.GetVersion();
+        //        versions.ExportGame(List < GameVersion > versions);
+        //    }
+        //    return $"{Title};{Genre};{MinPlayers};{MaxPlayers};";
+        //}
 
         public void UpdateGame()
         {
@@ -189,22 +189,22 @@ namespace Projekt_Genspil_v._2
                     case "4":
                     case "version":
                         Console.Write("Indtast ny version: ");
-                        Version = UpdateNullcheck();
+                        //Version = UpdateNullcheck();
                         break;
                     case "5":
                     case "stand":
                         Console.Write("Indtast ny stand: ");
-                        Condition = UpdateNullcheck();
+                        //Condition = UpdateNullcheck();
                         break;
                     case "6":
                     case "pris":
                         Console.Write("Indtast ny pris: ");
-                        while (Price == 0) Int32.TryParse(Console.ReadLine(), out _price);
+                        //while (Price == 0) Int32.TryParse(Console.ReadLine(), out _price);
                         break;
                     case "7":
                     case "noter":
                         Console.Write("Indtast ny noter: ");
-                        Notes = UpdateNullcheck();
+                        //Notes = UpdateNullcheck();
                         break;
                     default:
                         Console.WriteLine("Ugyldigt redigerings kriterie");
@@ -223,6 +223,14 @@ namespace Projekt_Genspil_v._2
             } while (updateInfo == null || updateInfo.Length == 0);
 
             return updateInfo;
+        }
+        public void AddCopy(string Condition, int Price, string Notes)
+        {
+            versions[iVersion].AddCopy(Condition, Price, Notes);
+        }
+        public void AddCopy(int index, string Condition, int Price, string Notes)
+        {
+            versions[index].AddCopy(Condition, Price, Notes);
         }
     }
 }
