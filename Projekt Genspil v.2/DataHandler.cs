@@ -84,7 +84,7 @@ namespace Projekt_Genspil_v._2
                         break;
                     string[] parts = line.Split(':');
 
-                    if (parts[0] == "Tittel")
+                    if (parts[0] == "Titel")
                     {
                         Item++;
                         string title = parts[1];
@@ -194,12 +194,12 @@ namespace Projekt_Genspil_v._2
     //        sw.WriteLine($"Lagerliste Genspil - {dato}");
     //        for (int i = 0; i < 50; i++)
     //        {
-    //            // Tester om der er en tittel i arrayet, og er der det, skrives tittel, genre, og antal spillere i samme string.
+    //            // Tester om der er en titel i arrayet, og er der det, skrives titel, genre, og antal spillere i samme string.
     //            if (game[i] != null)
     //            {
     //                string title = "";
     //                sw.WriteLine(game[i].GetTitle(Title));
-    //                //saveTitle[i] = $"Tittel: {gameTitle[i].title} : Genre: {gameTitle[i].genre} : Minimum spillere: {gameTitle[i].players[0]} : maximum: {gameTitle[i].players[1]} ";
+    //                //saveTitle[i] = $"Titel: {gameTitle[i].title} : Genre: {gameTitle[i].genre} : Minimum spillere: {gameTitle[i].players[0]} : maximum: {gameTitle[i].players[1]} ";
     //                for (int j = 0; j < 10; j++)
     //                {
     //                    // Tester om der er en version, og i så fald, gemmer versionen i en string
@@ -247,7 +247,7 @@ namespace Projekt_Genspil_v._2
     //            if (line == null)
     //                break;
     //            // If line contains "Title", create new instance of Game, and increment gameItem.
-    //            if (line.Contains("Tittel: "))
+    //            if (line.Contains("Titel: "))
     //            {
     //                game[gameItem] = new Game();
     //                gameItem++;

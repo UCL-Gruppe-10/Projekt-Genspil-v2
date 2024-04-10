@@ -10,7 +10,7 @@ namespace Projekt_Genspil_v._2
     public class Game
     {
         public GameVersion tempVersion = new GameVersion();
-        public List<GameVersion> versions = new List<GameVersion>();
+        public List<GameVersion> versionList = new List<GameVersion>();
         private string _title;
         private string _genre;
         private int _minPlayers;
@@ -94,23 +94,23 @@ namespace Projekt_Genspil_v._2
         public List<GameVersion> CreateVersion(string _version, string _condition, int _price, string _notes)
         {
             GameVersion version = new GameVersion(_version, _condition, _price, _notes);
-            versions.Add(version);
+            versionList.Add(version);
             iVersion++;
-            return versions;
+            return versionList;
         }
         public List<GameVersion> CreateVersion(string _version, string _condition, int _price)
         {
             GameVersion version = new GameVersion() { Version = _version, Condition = _condition, Price = _price };
-            versions.Add(version);
+            versionList.Add(version);
             iVersion++;
-            return versions;
+            return versionList;
         }
         public List<GameVersion> CreateVersion(string _version)
         {
             GameVersion version = new GameVersion() { Version = _version };
-            versions.Add(version);
+            versionList.Add(version);
             iVersion++;
-            return versions;
+            return versionList;
         }
 
         /*public void CreateGame()  // Ligger nu i Menu.cs
@@ -133,20 +133,38 @@ namespace Projekt_Genspil_v._2
             Console.Write("Notes: ");
             Notes = Console.ReadLine();
         }*/
+        public string GetGame()
+        {
+            return $"Spil: {Title} -- Genre: {Genre} -- Spillere: {MinPlayers} til {MaxPlayers}";
+        }
 
         public void ShowGame()
         {
             //Console.WriteLine($"{Title}, {Version}, {Genre}, {MinPlayers} til {MaxPlayers}, {Condition}, {Price}, {Notes}");
-            Console.WriteLine($"{_title}, {_genre}, {_minPlayers} til {_maxPlayers}");
+            Console.WriteLine($"{Title} -- {Genre} -- {MinPlayers} til {MaxPlayers}");
+            foreach (GameVersion version in versionList)
+            {
+                version.ShowVersion();
+            }
         }
 
-        //public string ExportGame(List<GameVersion> versions)
+        public void ListGame()
+        {
+            for (int i = 0; i < versionList.Count; i++)
+            {
+                GameVersion version = versionList[i];
+                Console.WriteLine($"Version ID: {i} | {version.GetVersion()}");
+                version.ListVersion();
+            }
+        }
+
+        //public string ExportGame(List<GameVersion> versionList)
         //{
-            
-        //    foreach(List<GameVersion>version in versions)
+
+        //    foreach(List<GameVersion>version in versionList)
         //    {
-        //        versions.GetVersion();
-        //        versions.ExportGame(List < GameVersion > versions);
+        //        versionList.GetVersion();
+        //        versionList.ExportGame(List < GameVersion > versionList);
         //    }
         //    return $"{Title};{Genre};{MinPlayers};{MaxPlayers};";
         //}
@@ -226,11 +244,11 @@ namespace Projekt_Genspil_v._2
         }
         public void AddCopy(string Condition, int Price, string Notes)
         {
-            versions[iVersion].AddCopy(Condition, Price, Notes);
+            versionList[iVersion].AddCopy(Condition, Price, Notes);
         }
         public void AddCopy(int index, string Condition, int Price, string Notes)
         {
-            versions[index].AddCopy(Condition, Price, Notes);
+            versionList[index].AddCopy(Condition, Price, Notes);
         }
     }
 }

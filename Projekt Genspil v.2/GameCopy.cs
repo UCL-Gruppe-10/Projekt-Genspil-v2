@@ -56,9 +56,15 @@ namespace Projekt_Genspil_v._2
             Price = b;
             Notes = c;
         }
-        public string GetInfo()
+        public string GetCopy()
         {
-            return $"Condition: {Condition}, Price: {Price}, Notes{Notes}";
+            return $"Stand: {Condition} -- Pris: {Price} -- Noter: {Notes}";
+        }
+
+        public void ShowCopy()
+        {
+            //Console.WriteLine($"{Title}, {Version}, {Genre}, {MinPlayers} til {MaxPlayers}, {Condition}, {Price}, {Notes}");
+            Console.WriteLine($"        Stand: {Condition} -- Pris: {Price} -- Noter: {Notes}");
         }
     }
 }

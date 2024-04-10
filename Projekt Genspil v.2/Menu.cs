@@ -10,8 +10,8 @@ namespace Projekt_Genspil_v._2
 {
     internal class Menu
     {
-        public List<Game> gameInstance = new List<Game>();
-        DataHandler saveGameInstance = new DataHandler("GenspilLagerliste.txt");
+        public List<Game> gameList = new List<Game>();
+        DataHandler saveGameList = new DataHandler("GenspilLagerliste.txt");
         int gameItem = 0;
         public int GameItem
         {
@@ -22,11 +22,11 @@ namespace Projekt_Genspil_v._2
 
         public Menu()
         {
-            //Game[] gameInstance = new Game[99];
-            DataHandler loadGameInstance = new DataHandler("GenspilLagerliste.txt");
-            gameInstance = loadGameInstance.LoadGames();
+            //Game[] gameList = new Game[99];
+            DataHandler loadGameList = new DataHandler("GenspilLagerliste.txt");
+            gameList = loadGameList.LoadGames();
 
-            GameItem = loadGameInstance.Item;
+            GameItem = loadGameList.Item;
         }
 
         public void ShowMainMenu()
@@ -45,7 +45,8 @@ namespace Projekt_Genspil_v._2
             Console.WriteLine("(3) Lagerliste");
 
             Console.WriteLine("(4) Gem og udskriv lagerliste");
-            Console.WriteLine("(5) Print aktivt gameInstance til konsol");
+            Console.WriteLine("(5) Print aktivt gameList til konsol");
+            Console.WriteLine("(6) Index aktivt gameList til konsol");
 
             Console.WriteLine("\n(0) for at afslutte");
         }
@@ -69,13 +70,16 @@ namespace Projekt_Genspil_v._2
                         ShowInventory();
                         break;
                     case 4:
-                        saveGameInstance.SaveGames(gameInstance);
+                        saveGameList.SaveGames(gameList);
                         break;
                     case 5:
                         ShowInventory();
                         break;
+                    case 6:
+                        ListInventory();
+                        break;
                     case 0:
-                        saveGameInstance.SaveGames(gameInstance);
+                        saveGameList.SaveGames(gameList);
                         Console.WriteLine("Farvel");
                         break;
                     default:
@@ -109,72 +113,59 @@ namespace Projekt_Genspil_v._2
 
         void CreateGame()
         {
-            if (gameItem < 99)
+            Console.WriteLine(" - Information til nyt spil - ");
+            Console.Write("Navn: ");
+            string tempTitle = Console.ReadLine();
+            Console.Write("Version: ");
+            string tempVersion = Console.ReadLine();
+            Console.Write("Genre: ");
+            string tempGenre = Console.ReadLine();
+            int tempMinPlayers;
+            while (true)
             {
-                Console.WriteLine(" - Information til nyt spil - ");
-                Console.Write("Navn: ");
-                string tempTitle = Console.ReadLine();
-                Console.Write("Version: ");
-                string tempVersion = Console.ReadLine();
-                Console.Write("Genre: ");
-                string tempGenre = Console.ReadLine();
-                int tempMinPlayers;
-                while (true)
-                {
-                    Console.Write("Minimum spillere: ");
-                    if (int.TryParse(Console.ReadLine(), out tempMinPlayers))
-                        break;
-                }
-                int tempMaxPlayers;
-                while (true)
-                {
-                    Console.Write("Max antal spillere: ");
-                    if (int.TryParse(Console.ReadLine(), out tempMaxPlayers))
-                        break;
-                }
-                Console.Write("Stand: ");
-                string tempCondition = Console.ReadLine();
-                int tempPrice;
-                while (true)
-                {
-                    Console.Write("Pris: ");
-                    if (int.TryParse(Console.ReadLine(), out tempPrice))
-                        break;
-                }
-                Console.Write("Noter: ");
-                string tempNotes = Console.ReadLine();
-                gameInstance.Add(new Game(tempTitle, tempVersion, tempGenre, tempMinPlayers, tempMaxPlayers, tempCondition, tempPrice, tempNotes));
+                Console.Write("Minimum spillere: ");
+                if (int.TryParse(Console.ReadLine(), out tempMinPlayers))
+                    break;
             }
-            else
+            int tempMaxPlayers;
+            while (true)
             {
-                Console.WriteLine("Maximum antal er nået");
+                Console.Write("Max antal spillere: ");
+                if (int.TryParse(Console.ReadLine(), out tempMaxPlayers))
+                    break;
             }
+            Console.Write("Stand: ");
+            string tempCondition = Console.ReadLine();
+            int tempPrice;
+            while (true)
+            {
+                Console.Write("Pris: ");
+                if (int.TryParse(Console.ReadLine(), out tempPrice))
+                    break;
+            }
+            Console.Write("Noter: ");
+            string tempNotes = Console.ReadLine();
+            gameList.Add(new Game(tempTitle, tempVersion, tempGenre, tempMinPlayers, tempMaxPlayers, tempCondition, tempPrice, tempNotes));
         }
-
-        /*public void ReadStorage()
-        {
-            DataHandler loadGameInstance = new DataHandler("GenspilLagerliste_Backup.txt");
-            gameInstance = loadGameInstance.LoadGames();
-
-            GameItem = loadGameInstance.Item;
-        }*/
 
         public void ShowInventory()
         {
-            //Console.Clear();
-            /*for (int i = 0; i < 99; i++)
-            {
-                if (gameInstance[i] != null)
-                {
-                    gameInstance[i].ShowGame();
-                    Console.WriteLine();
-                }
-                else
-                    break;
-            }*/
-            foreach (Game game in gameInstance)
+            foreach (Game game in gameList)
             {
                 game.ShowGame();
+            }
+        }
+
+
+
+        public void ListInventory()
+        {
+            for (int i = 0; i < gameList.Count; i++)
+            {
+                Game game = gameList[i];
+                Console.WriteLine($"   Spil ID: {i} | {game.GetGame()}");
+                game.ListGame();
+                Console.WriteLine();
             }
         }
 
@@ -265,7 +256,7 @@ namespace Projekt_Genspil_v._2
 
             Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
             bool found = false;
-            foreach (Game game in gameInstance) // Her gennemgår den Array'et efter søgeordet, hvor den så vil sortere dem efter kriteriet
+            foreach (Game game in gameList) // Her gennemgår den Array'et efter søgeordet, hvor den så vil sortere dem efter kriteriet
             {
                 if (game != null && game.Title.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
@@ -287,7 +278,7 @@ namespace Projekt_Genspil_v._2
         {
             Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
             bool found = false;
-            foreach (Game game in gameInstance)
+            foreach (Game game in gameList)
             {
                 if (game != null && game.Genre.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
@@ -310,7 +301,7 @@ namespace Projekt_Genspil_v._2
         {
             Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
             bool found = false;
-            foreach (Game game in gameInstance)
+            foreach (Game game in gameList)
             {
                 if (game != null && game.MinPlayers < searchWord && game.MaxPlayers > searchWord)
                 {
@@ -333,7 +324,7 @@ namespace Projekt_Genspil_v._2
         //{
         //    Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
         //    bool found = false;
-        //    foreach (Game game in gameInstance)
+        //    foreach (Game game in gameList)
         //    {
         //        if (game != null && game.Condition.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
         //        {
@@ -356,7 +347,7 @@ namespace Projekt_Genspil_v._2
 
         //    Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
         //    bool found = false;
-        //    foreach (Game game in gameInstance)
+        //    foreach (Game game in gameList)
         //    {
         //        if (game != null && game.Price < searchWord)
         //        {
@@ -379,7 +370,7 @@ namespace Projekt_Genspil_v._2
         //{
         //    Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
         //    bool found = false;
-        //    foreach (Game game in gameInstance)
+        //    foreach (Game game in gameList)
         //    {
         //        if (game != null && game.Notes.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
         //        {
@@ -396,5 +387,42 @@ namespace Projekt_Genspil_v._2
         //    Console.WriteLine("Tryk Enter for at fortsætte...");
         //    Console.ReadLine();
         //}
+
+
+
+        /*
+        private static void RemoveGame()
+        {
+
+            bool isGameIdValid = false;
+            {
+                while (!isGameIdValid)
+                {
+                    Console.WriteLine("Vælge spil ved hjælp af ID");
+                    var RemoveGameUserInput = Console.ReadLine();
+                    if (RemoveGameUserInput == "")
+                    {
+                        Console.WriteLine("feltet er tomt, prøv igen");
+                        continue;
+                    }
+                    if (int.TryParse(RemoveGameUserInput, out var gameId) &&
+                        gameId >= 1)
+                    {
+
+                        var gameToBeRemoved = gameList[gameId];
+                        gameList.RemoveAt(gameId);
+                        isGameIdValid = true;
+                        Console.WriteLine($"");
+
+
+
+                    }
+
+
+
+                }
+            }
+        }
+        */
     }
 }
