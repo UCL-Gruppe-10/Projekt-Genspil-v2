@@ -19,10 +19,8 @@ namespace Projekt_Genspil_v._2
             get { return gameItem; }
         }
 
-
         public Menu()
         {
-            //Game[] gameList = new Game[99];
             DataHandler loadGameList = new DataHandler("GenspilLagerliste.txt");
             gameList = loadGameList.LoadGames();
 
@@ -37,7 +35,7 @@ namespace Projekt_Genspil_v._2
             Console.WriteLine("(1) Tilgå spil - Søg, rediger"); // Salg, forespørgsel, venteliste? // rediger funktion herunder
 
             // Mulighed for at søge efter spil baseret på forskellige kriterier, såsom genre, antal spillere, stand, pris og titel.
-            // Skal evt kunne opdatere forspørgsel og salg
+            // Skal evt kunne opdatere forspørgsel 
             Console.WriteLine("(2) Opret spil"); // opdater koder til arbejde med persistens. 
 
             // Mulighed for at se, hvilke spil der er tilgængelige i lageret, og hvilke der er reserveret eller bestilt, og mulighed for en udskrift.
@@ -47,6 +45,8 @@ namespace Projekt_Genspil_v._2
             Console.WriteLine("(4) Gem og udskriv lagerliste");
             Console.WriteLine("(5) Print aktivt gameList til konsol");
             Console.WriteLine("(6) Index aktivt gameList til konsol");
+            Console.WriteLine("(7) Tjek index 1, 1.1, og 1.1.1");
+            Console.WriteLine("(8) Slet Spil m. versioner + eksemplarer");
 
             Console.WriteLine("\n(0) for at afslutte");
         }
@@ -78,6 +78,17 @@ namespace Projekt_Genspil_v._2
                     case 6:
                         ListInventory();
                         break;
+                    case 7: // Ikke tjekket om virker. Virker ikke uden 'string txt' af en eller anden grund
+                        string txt = gameList[1].GetGame();
+                        Console.WriteLine(txt); // .GetGame 
+                        txt = gameList[1].versionList[1].GetVersion();
+                        Console.WriteLine(txt); // .GetVersion
+                        txt = gameList[1].versionList[1].copyList[1].GetCopy();
+                        Console.WriteLine(txt); // .GetCopy
+                        break;
+                    case 8:
+                        RemoveGame();
+                        break;
                     case 0:
                         saveGameList.SaveGames(gameList);
                         Console.WriteLine("Farvel");
@@ -98,9 +109,7 @@ namespace Projekt_Genspil_v._2
                 if (Int32.TryParse(Console.ReadLine(), out itemId))
                 {
                     if (itemId >= 0)
-                    {
                         isItemIdValid = true;
-                    }
                 }
                 else
                 {
@@ -170,7 +179,7 @@ namespace Projekt_Genspil_v._2
         }
 
 
-        void SearchGames()
+        void SearchGames() //Mangler oprydning
         {
             string searchCriteria;
             while (true)
@@ -238,7 +247,7 @@ namespace Projekt_Genspil_v._2
                         searchCriteria = Console.ReadLine();
                         if (searchCriteria != null && searchCriteria.Length > 0)
                         {
-                            //SearchGamesNotes(searchCriteria);
+                            SearchGamesNotes(searchCriteria);
                         }
                         break;
                     default:
@@ -262,8 +271,11 @@ namespace Projekt_Genspil_v._2
                 {
                     Console.WriteLine($"{game.Title}");
                     found = true;
+                    RemoveGame();
                 }
             }
+            
+
             // Vis en besked, hvis der ikke er nogen søgeresultater
             if (!found)
             {
@@ -366,32 +378,39 @@ namespace Projekt_Genspil_v._2
         //}
 
 
-        //void SearchGamesNotes(string searchWord)
-        //{
-        //    Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
-        //    bool found = false;
-        //    foreach (Game game in gameList)
-        //    {
-        //        if (game != null && game.Notes.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
-        //        {
-        //            Console.WriteLine($"{game.Title}, {game.Notes}");
-        //            found = true;
-        //        }
-        //    }
+        void SearchGamesNotes(string searchWord)
+        {
+            Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
+            bool found = false;
+            foreach (Game game in gameList)
+            {
+                for(int i = 0; i < game.versionList.Count; i++)
+                {
+                    for (int j = 0; j < game.versionList[i].copyList.Count; j++)
+                    {
+                        if (game != null && game.versionList[i].copyList[j].Notes.IndexOf(searchWord, StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            Console.WriteLine($"{game.Title}, {game.versionList[i].Version}, {game.versionList[i].copyList[j].GetCopy()}");
+                            found = true;
+                        }
+                    }
+                }
+                
+            }
 
-        //    if (!found)
-        //    {
-        //        Console.WriteLine($"Ingen søgeresultater fundet for '{searchWord}'");
-        //    }
+            if (!found)
+            {
+                Console.WriteLine($"Ingen søgeresultater fundet for '{searchWord}'");
+            }
 
-        //    Console.WriteLine("Tryk Enter for at fortsætte...");
-        //    Console.ReadLine();
-        //}
+            Console.WriteLine("Tryk Enter for at fortsætte...");
+            Console.ReadLine();
+        }
 
 
 
-        /*
-        private static void RemoveGame()
+
+        void RemoveGame()
         {
 
             bool isGameIdValid = false;
@@ -399,30 +418,36 @@ namespace Projekt_Genspil_v._2
                 while (!isGameIdValid)
                 {
                     Console.WriteLine("Vælge spil ved hjælp af ID");
-                    var RemoveGameUserInput = Console.ReadLine();
-                    if (RemoveGameUserInput == "")
+                    var removeGameUserInput = Console.ReadLine();
+                    if (removeGameUserInput == "")
                     {
-                        Console.WriteLine("feltet er tomt, prøv igen");
+                        Console.WriteLine("Feltet er tomt, prøv igen");
                         continue;
                     }
-                    if (int.TryParse(RemoveGameUserInput, out var gameId) &&
-                        gameId >= 1)
+                    if (int.TryParse(removeGameUserInput, out int gameId) &&
+                        gameId >= 0 && gameId < gameList.Count)
                     {
 
-                        var gameToBeRemoved = gameList[gameId];
-                        gameList.RemoveAt(gameId);
-                        isGameIdValid = true;
-                        Console.WriteLine($"");
+                        gameList.RemoveAt(gameId);                     
+                        isGameIdValid = true;  
+                        Console.WriteLine($"Spillet er fjernet fra systemet");
 
+                        
 
+                        Console.WriteLine("Tryk på enter for at vende tilbage til Søg spil");
+                        Console.ReadKey();
+                        SearchGames();
 
                     }
+
 
 
 
                 }
+
             }
+
         }
-        */
+        
     }
 }

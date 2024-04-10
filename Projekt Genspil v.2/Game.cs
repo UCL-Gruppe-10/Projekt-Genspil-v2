@@ -17,7 +17,6 @@ namespace Projekt_Genspil_v._2
         private int _maxPlayers;
         int iVersion = -1;
 
-
         public Game(string title, string version, string genre, int minPlayers, int maxPlayers, string condition, int price, string notes)
         {
             Title = title;
@@ -140,7 +139,6 @@ namespace Projekt_Genspil_v._2
 
         public void ShowGame()
         {
-            //Console.WriteLine($"{Title}, {Version}, {Genre}, {MinPlayers} til {MaxPlayers}, {Condition}, {Price}, {Notes}");
             Console.WriteLine($"{Title} -- {Genre} -- {MinPlayers} til {MaxPlayers}");
             foreach (GameVersion version in versionList)
             {
@@ -157,17 +155,6 @@ namespace Projekt_Genspil_v._2
                 version.ListVersion();
             }
         }
-
-        //public string ExportGame(List<GameVersion> versionList)
-        //{
-
-        //    foreach(List<GameVersion>version in versionList)
-        //    {
-        //        versionList.GetVersion();
-        //        versionList.ExportGame(List < GameVersion > versionList);
-        //    }
-        //    return $"{Title};{Genre};{MinPlayers};{MaxPlayers};";
-        //}
 
         public void UpdateGame()
         {

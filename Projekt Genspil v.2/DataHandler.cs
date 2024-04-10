@@ -25,53 +25,9 @@ namespace Projekt_Genspil_v._2
             _dataFileName = dataFileName;
         }
 
-
-
-        //public List<Game> LoadGames()
-        //{
-        //    List<Game> gameList = new List<Game>();
-
-        //    using (StreamReader sr = new StreamReader(Path.Combine(docPath, DataFileName)))
-        //    {
-        //        foreach (string line in sr.ReadToEnd().Trim().Split('\n'))
-        //        {
-        //            string[] parts = line.Trim().Split(';');
-
-        //            if (parts.Length == 8)
-        //            {
-        //                string title = parts[0];
-        //                string version = parts[1];
-        //                string genre = parts[2];
-        //                int.TryParse(parts[3], out int minPlayers);
-        //                int.TryParse(parts[4], out int maxPlayers);
-        //                string condition = parts[5];
-        //                int.TryParse(parts[6], out int price);
-        //                string notes = parts[7];
-
-        //                Game game = new Game(title, version, genre, minPlayers, maxPlayers, condition, price, notes);
-        //                gameList.Add(game);
-        //                Item++;
-        //            }
-        //            else if (line.Contains("Lagerliste Genspil - "))
-        //            {
-        //                Console.WriteLine("Indhenter information fra"
-        //                    + line.Substring(line.IndexOf(" - ")+2));
-        //            }
-        //            else
-        //            {
-        //                throw new InvalidDataException("Dataformat in file not correct");
-        //            }
-        //        }
-        //    }
-        //    return gameList;
-        //}
         public List<Game> LoadGames()
         {
             List<Game> gameList = new List<Game>();
-
-            
-            
-
             using (StreamReader sr = new StreamReader(Path.Combine(docPath, DataFileName)))
             {
                 string line = sr.ReadLine();
@@ -96,7 +52,6 @@ namespace Projekt_Genspil_v._2
                     }
                     if (parts[0] == "Version")
                     {
-                        //Item++;
                         string version = parts[1];
                         gameList[Item].CreateVersion(version);
 
@@ -114,10 +69,6 @@ namespace Projekt_Genspil_v._2
                         Console.WriteLine("Indhenter information fra"
                             + line.Substring(line.IndexOf(" - ") + 2));
                     }
-                    //else
-                    //{
-                    //    throw new InvalidDataException("Dataformat in file not correct");
-                    //}
                 }
             }
             return gameList;
@@ -127,20 +78,24 @@ namespace Projekt_Genspil_v._2
         {
             DateTime date = DateTime.Now;
 
-            using (StreamWriter sw = new StreamWriter(Path.Combine(docPath, DataFileName)))
+            using (StreamWriter sw = new StreamWriter(Path.Combine(docPath, DataFileName), false))
             {
                 sw.WriteLine($"Lagerliste Genspil - {date}");   // Bruger fuld for at tjekke sidste gyldige
                 //sw.WriteLine($"Lagerliste Genspil - {date.ToShortDateString()}");
                 foreach (Game game in inputGame)
                 {
-                    //sw.WriteLine(game.ExportGame());
+                    sw.WriteLine(game.GetGame());
+                    for (int i = 0; i < game.versionList.Count; i++) 
+                    {
+                        sw.WriteLine(game.versionList[i].GetVersion());
+                        for (int j = 0; j < game.versionList[i].copyList.Count; j++)
+                        {
+                            sw.WriteLine(game.versionList[i].copyList[j].GetCopy());
+                        }
+                    }
                 }
             }
-            
         }
-
-
-
     }
 
 
