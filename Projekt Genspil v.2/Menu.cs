@@ -11,7 +11,7 @@ namespace Projekt_Genspil_v._2
     internal class Menu
     {
         public List<Game> gameList = new List<Game>();
-        DataHandler saveGameList = new DataHandler("GenspilLagerliste.txt");
+        DataHandler dataHandler;
         int gameItem = 0;
         public int GameItem
         {
@@ -21,10 +21,10 @@ namespace Projekt_Genspil_v._2
 
         public Menu()
         {
-            DataHandler loadGameList = new DataHandler("GenspilLagerliste.txt");
-            gameList = loadGameList.LoadGames();
+            dataHandler = new DataHandler("GenspilLagerliste.txt");
+            gameList = dataHandler.LoadGames();
 
-            GameItem = loadGameList.Item;
+            GameItem = dataHandler.Item;
         }
 
         public void ShowMainMenu()
@@ -70,7 +70,7 @@ namespace Projekt_Genspil_v._2
                         ShowInventory();
                         break;
                     case 4:
-                        saveGameList.SaveGames(gameList);
+                        dataHandler.SaveGames(gameList);
                         break;
                     case 5:
                         ShowInventory();
@@ -90,7 +90,7 @@ namespace Projekt_Genspil_v._2
                         RemoveGame();
                         break;
                     case 0:
-                        saveGameList.SaveGames(gameList);
+                        dataHandler.SaveGames(gameList);
                         Console.WriteLine("Farvel");
                         break;
                     default:

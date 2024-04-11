@@ -11,9 +11,9 @@ namespace Projekt_Genspil_v._2
         public GameCopy tempCopy = new GameCopy();
         public List<GameCopy> copyList = new List<GameCopy>();
         private string _version;
-        //public string Condition;
-        //public int Price;
-        //public string Notes;
+        public string tempCondition;
+        public int tempPrice;
+        public string tempNotes;
         public string Version
         {
             get { return _version; }
@@ -26,26 +26,17 @@ namespace Projekt_Genspil_v._2
             }
         }
         public GameVersion() { }
-
-        public GameVersion(string version)
+        public GameVersion(string version) : this(version, null, 0, null) { }
+        public GameVersion(string version, string condition, int price) : this(version, condition, price, null) { }
+        public GameVersion(string version, string Condition, int price, string notes)
         {
             Version = version;
-        }
-
-        public GameVersion(string version, string condition, int price, string notes)
-        {
-            Version = version;
-            tempCopy = new GameCopy(condition, price, notes);
+            tempCondition = Condition;
+            tempPrice = price;
+            tempNotes = notes;
+            tempCopy = new GameCopy(tempCondition, tempPrice, tempNotes);
             copyList.Add(tempCopy);
         }
-
-        public GameVersion(string version, string condition, int price)
-        {
-            Version = version;
-            tempCopy = new GameCopy(condition, price);
-            copyList.Add(tempCopy);
-        }
-
         public string GetVersion()
         {
             return $"Version: {Version}";

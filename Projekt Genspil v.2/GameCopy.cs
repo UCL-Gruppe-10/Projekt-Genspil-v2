@@ -45,11 +45,7 @@ namespace Projekt_Genspil_v._2
             }
         }
         public GameCopy() { }
-        public GameCopy(string a, int b)
-        {
-            Condition = a;
-            Price = b;
-        }
+        public GameCopy(string a, int b) : this(a, b, null) { }
         public GameCopy(string a, int b, string c)
         {
             Condition = a;
@@ -58,7 +54,7 @@ namespace Projekt_Genspil_v._2
         }
         public string GetCopy()
         {
-            return $"Stand: {Condition} -- Pris: {Price} -- Noter: {Notes}";
+            return $"Stand: {Condition}: Pris: {Price}: Noter: {Notes}";
         }
 
         public void ShowCopy()

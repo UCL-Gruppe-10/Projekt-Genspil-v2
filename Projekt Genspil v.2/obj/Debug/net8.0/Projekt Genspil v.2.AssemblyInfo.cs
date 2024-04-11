@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Projekt Genspil v.2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a9db76083e422f40d6b0464058cf35306da0813")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+281041e78150a245c723b8f82e3c4ecf6944728c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Projekt Genspil v.2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Projekt Genspil v.2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -23,16 +23,16 @@ namespace Projekt_Genspil_v._2
             Genre = genre;
             MinPlayers = minPlayers;
             MaxPlayers = maxPlayers;
-            GameVersion tempVersion = new GameVersion() { Version = version, Condition = condition, Price = price, Notes = notes };
+            GameVersion tempVersion = new GameVersion(version, condition, price, notes);
             iVersion++;
         }
-        public Game(string title, string version, string genre, int minPlayers, int maxPlayers, string condition, int price)
+        public Game(string title, string version, string genre, int minPlayers, int maxPlayers, string condition, int price) : this(title, version, genre, minPlayers, maxPlayers, condition, price, null)
         {
             Title = title;
             Genre = genre;
             MinPlayers = minPlayers;
             MaxPlayers = maxPlayers;
-            GameVersion tempVersion = new GameVersion() { Version = version, Condition = condition, Price = price };
+            GameVersion tempVersion = new GameVersion(version, condition, price);
             iVersion++;
         }
         public Game(string title, string genre, int minPlayers, int maxPlayers)
@@ -99,7 +99,7 @@ namespace Projekt_Genspil_v._2
         }
         public List<GameVersion> CreateVersion(string _version, string _condition, int _price)
         {
-            GameVersion version = new GameVersion() { Version = _version, Condition = _condition, Price = _price };
+            GameVersion version = new GameVersion(_version, _condition, _price);
             versionList.Add(version);
             iVersion++;
             return versionList;
@@ -134,7 +134,7 @@ namespace Projekt_Genspil_v._2
         }*/
         public string GetGame()
         {
-            return $"Spil: {Title} -- Genre: {Genre} -- Spillere: {MinPlayers} til {MaxPlayers}";
+            return $"Spil: {Title} : Genre: {Genre} : Spillere: {MinPlayers} : til: {MaxPlayers}";
         }
 
         public void ShowGame()

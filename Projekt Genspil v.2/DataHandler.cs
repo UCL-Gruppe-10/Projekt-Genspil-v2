@@ -40,7 +40,7 @@ namespace Projekt_Genspil_v._2
                         break;
                     string[] parts = line.Split(':');
 
-                    if (parts[0] == "Titel")
+                    if (parts[0] == "Spil")
                     {
                         Item++;
                         string title = parts[1];
