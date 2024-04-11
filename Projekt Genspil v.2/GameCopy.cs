@@ -63,7 +63,6 @@ namespace Projekt_Genspil_v._2
 
         public void ShowCopy()
         {
-            //Console.WriteLine($"{Title}, {Version}, {Genre}, {MinPlayers} til {MaxPlayers}, {Condition}, {Price}, {Notes}");
             Console.WriteLine($"        Stand: {Condition} -- Pris: {Price} -- Noter: {Notes}");
         }
     }

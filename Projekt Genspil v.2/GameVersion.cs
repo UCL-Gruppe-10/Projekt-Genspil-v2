@@ -53,7 +53,6 @@ namespace Projekt_Genspil_v._2
 
         public void ShowVersion()
         {
-            //Console.WriteLine($"{Title}, {Version}, {Genre}, {MinPlayers} til {MaxPlayers}, {Condition}, {Price}, {Notes}");
             Console.WriteLine($"    {_version}");
             foreach (GameCopy copy in copyList)
             {
