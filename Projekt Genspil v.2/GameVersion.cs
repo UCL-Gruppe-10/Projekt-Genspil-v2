@@ -11,9 +11,9 @@ namespace Projekt_Genspil_v._2
         public GameCopy tempCopy = new GameCopy();
         public List<GameCopy> copyList = new List<GameCopy>();
         private string _version;
-        public string Condition;
-        public int Price;
-        public string Notes;
+        //public string Condition;
+        //public int Price;
+        //public string Notes;
         public string Version
         {
             get { return _version; }

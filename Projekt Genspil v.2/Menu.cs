@@ -61,7 +61,7 @@ namespace Projekt_Genspil_v._2
                 switch (menuItem)
                 {
                     case 1:
-                        SearchGames();
+                        SearchGameMenu();
                         break;
                     case 2:
                         CreateGame();
@@ -119,7 +119,6 @@ namespace Projekt_Genspil_v._2
             return itemId;
         }
 
-
         void CreateGame()
         {
             Console.WriteLine(" - Information til nyt spil - ");
@@ -165,8 +164,6 @@ namespace Projekt_Genspil_v._2
             }
         }
 
-
-
         public void ListInventory()
         {
             for (int i = 0; i < gameList.Count; i++)
@@ -178,8 +175,7 @@ namespace Projekt_Genspil_v._2
             }
         }
 
-
-        void SearchGames() //Mangler oprydning
+        void SearchGameMenu() //Mangler oprydning
         {
             string searchCriteria;
             while (true)
@@ -331,7 +327,6 @@ namespace Projekt_Genspil_v._2
             Console.ReadLine();
         }
 
-
         //void SearchGamesCondition(string searchWord)
         //{
         //    Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
@@ -377,7 +372,6 @@ namespace Projekt_Genspil_v._2
         //    Console.ReadLine();
         //}
 
-
         void SearchGamesNotes(string searchWord)
         {
             Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
@@ -407,9 +401,6 @@ namespace Projekt_Genspil_v._2
             Console.ReadLine();
         }
 
-
-
-
         void RemoveGame()
         {
 
@@ -436,7 +427,7 @@ namespace Projekt_Genspil_v._2
 
                         Console.WriteLine("Tryk på enter for at vende tilbage til Søg spil");
                         Console.ReadKey();
-                        SearchGames();
+                        SearchGameMenu();
 
                     }
 
