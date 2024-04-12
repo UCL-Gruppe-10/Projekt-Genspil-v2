@@ -184,10 +184,12 @@ namespace Projekt_Genspil_v._2
             while (true)
             {
                 SearchGames();
-                Console.WriteLine("1 for at søge version");
-                Console.WriteLine("2 for at opdatere spil");
-                Console.WriteLine("3 for at slette spil");
-                Console.WriteLine("0 for at gå tilbage");
+                Console.WriteLine("=================");
+                Console.WriteLine("(1) for at søge version");
+                Console.WriteLine("(2) for at opdatere spil");
+                Console.WriteLine("(3) for at slette spil");
+                Console.WriteLine("\n(0) Tilbage");
+                Console.WriteLine("=================");
 
                 switch (SelectMenuItem())
                 {
