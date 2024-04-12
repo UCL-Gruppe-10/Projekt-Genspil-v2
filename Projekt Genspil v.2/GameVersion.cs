@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Projekt_Genspil_v._2
+﻿namespace Projekt_Genspil_v._2
 {
     public class GameVersion
     {
@@ -74,14 +68,14 @@ namespace Projekt_Genspil_v._2
 
         public List<GameCopy> SortListByCondition(List<GameCopy> list)
         {
-            
+
             list.Sort((x, y) =>
             {
                 int ret = string.Compare(x.Condition, y.Condition);
                 return ret;
             });
-            
-            return list ;
+
+            return list;
         }
 
         public void AddCopy(string condition, int price, string notes)
@@ -95,6 +89,76 @@ namespace Projekt_Genspil_v._2
             GameCopy copy = new GameCopy(condition, price);
             copyList.Add(copy);
         }
+
+        public void SearchMenu()
+        {
+            do
+            {
+                Console.Clear();
+                Console.WriteLine($"Du har valgt {Version}");
+                Console.WriteLine("Spil sæt: ");
+                for (int i = 0; i < copyList.Count; i++)
+                {
+                    GameCopy copy = copyList[i];
+                    Console.WriteLine($"  ID: {i} | Stand: {copy.Condition} -- Pris: {copy.Price} -- Noter: {copy.Notes}");
+                    copyList[i].GetCopy();
+                }
+                Console.WriteLine("=================");
+                Console.WriteLine("(O) Opdater version");
+                Console.WriteLine("(T) Tilgå sæt");
+                Console.WriteLine("(S) Slet sæt");
+                Console.WriteLine("\n(0) Tilbage");
+                Console.WriteLine("=================");
+                int idx;
+                switch (Console.ReadLine().ToUpper())
+                {
+                    case "0":
+                        return;
+                    case "O":
+                    case "OPDATER":
+                        UpdateItem();
+                        break;
+                    case "T":
+                    case "TILGÅ":
+                        Console.Write("Vælg ID for sæt at tilgå: ");
+                        if (int.TryParse(Console.ReadLine(), out idx))
+                            copyList[idx].UpdateItem();
+                        break;
+                    case "S":
+                    case "SLET":
+                        Console.Write("Vælg ID for sæt at slette: ");
+                        if (int.TryParse(Console.ReadLine(), out idx))
+                            RemoveItem(idx);
+                        break;
+                }
+            } while (true);
+        }
+
+        public void UpdateItem()
+        {
+            GetVersion();
+            Console.WriteLine("\nOpdater version");
+            Console.WriteLine("=================");
+            Console.Write("Indtast ny titel: ");
+            Version = UpdateNullcheck();
+        }
+
+        void RemoveItem(int idx)
+        {
+            if (idx >= 0 && idx < copyList.Count)
+            {
+                Console.WriteLine("Du har slettet følgende: ");
+                copyList[idx].ShowCopy();
+
+                copyList.RemoveAt(idx);
+
+                Console.WriteLine("Tryk Enter for at fortsætte...");
+                Console.ReadKey();
+            }
+
+        }
+
+
         public void UpdateCopy(int idx)
         {
             bool Continue = true;
@@ -229,6 +293,7 @@ namespace Projekt_Genspil_v._2
             Console.WriteLine("Tryk Enter for at fortsætte...");
             Console.ReadLine();
         }
+
         public string ExportVersion()
         {
             string export = " ";
@@ -241,6 +306,17 @@ namespace Projekt_Genspil_v._2
                 return export;
             }
             return export;
+        }
+
+        private string UpdateNullcheck()
+        {
+            string updateInfo = null;
+            do
+            {
+                updateInfo = Console.ReadLine();
+            } while (updateInfo == null || updateInfo.Length == 0);
+
+            return updateInfo;
         }
     }
 }

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Projekt_Genspil_v._2
+﻿namespace Projekt_Genspil_v._2
 {
     public class Game
     {
@@ -56,7 +49,7 @@ namespace Projekt_Genspil_v._2
                 }
             }
         }
-        
+
         public string Genre
         {
             get { return _genre; }
@@ -112,26 +105,118 @@ namespace Projekt_Genspil_v._2
             return versionList;
         }
 
-        /*public void CreateGame()  // Ligger nu i Menu.cs
+        public void SearchMenu()
         {
-            Console.WriteLine(" - Information til nyt spil - ");
-            Console.Write("Navn: ");
-            Title = Console.ReadLine();
-            Console.Write("Version: ");
-            Version = Console.ReadLine();
-            Console.Write("Genre: ");
-            Genre = Console.ReadLine();
-            Console.Write("Minimum spillere: ");
-            MinPlayers = int.Parse(Console.ReadLine());
-            Console.Write("Maximum spillere: ");
-            MaxPlayers = int.Parse(Console.ReadLine());
-            Console.Write("Stand: ");
-            Condition = Console.ReadLine();
-            Console.Write("Pris: ");
-            Price = int.Parse(Console.ReadLine());
-            Console.Write("Notes: ");
-            Notes = Console.ReadLine();
-        }*/
+            do
+            {
+                Console.Clear();
+                Console.WriteLine($"Titel: {Title}");
+                Console.WriteLine($"Genre: {Genre}");
+                Console.WriteLine($"Spillere: {MinPlayers} til {MaxPlayers}");
+                Console.WriteLine("Versioner: ");
+                for (int i = 0; i < versionList.Count; i++)
+                {
+                    Console.WriteLine($"  ID: {i} | {versionList[i].Version} -- Antal sæt: {versionList[i].copyList.Count()}");
+                    versionList[i].GetVersion();
+                }
+                Console.WriteLine("=================");
+                Console.WriteLine("(O) Opdater spil");
+                Console.WriteLine("(T) Tilgå version");
+                Console.WriteLine("(S) Slet version");
+                Console.WriteLine("\n(0) Tilbage");
+                Console.WriteLine("=================");
+                int idx;
+                switch (Console.ReadLine().ToUpper())
+                {
+                    case "0":
+                        return;
+                    case "O":
+                        UpdateItem();
+                        break;
+                    case "T":
+                        Console.Write("Vælg ID for version at tilgå: ");
+                        if (int.TryParse(Console.ReadLine(), out idx))
+                            versionList[idx].SearchMenu();
+                        break;
+                    case "S":
+                        Console.Write("Vælg ID for version at slette: ");
+                        if (int.TryParse(Console.ReadLine(), out idx))
+                            RemoveItem(idx);
+                        break;
+                }
+            } while (true);
+        }
+
+        public void UpdateItem()
+        {
+            string updateSelector = null;
+            do
+            {
+                Console.Clear();
+                GetGame();
+                Console.WriteLine("\nHvad ønsker du at opdatere?");
+                Console.WriteLine("=================");
+                Console.WriteLine("(1) Titel");
+                Console.WriteLine("(2) Genre");
+                Console.WriteLine("(3) Minimum spillere");
+                Console.WriteLine("(4) Maximum spillere");
+                Console.WriteLine("\n(0) Tilbage");
+                do
+                {
+                    updateSelector = Console.ReadLine().ToUpper();
+                } while (updateSelector == null || updateSelector.Length == 0);
+
+                switch (updateSelector)
+                {
+                    case "0":
+                        return;
+                    case "1":
+                    case "TITEL":
+                        Console.Write("Indtast ny titel: ");
+                        Title = UpdateNullcheck();
+                        break;
+                    case "2":
+                    case "GENRE":
+                        Console.Write("Indtast ny genre: ");
+                        Genre = UpdateNullcheck();
+                        break;
+                    case "3":
+                    case "MIN":
+                    case "MINIMUM":
+                    case "MINIMUM SPILLERE":
+                        Console.Write("Indtast nyt minimum antal spillere: ");
+                        while (MinPlayers < 1) Int32.TryParse(Console.ReadLine(), out _minPlayers);
+                        break;
+                    case "4":
+                    case "MAX":
+                    case "MAXIMUM":
+                    case "MAXIMUM SPILLERE":
+                        Console.Write("Indtast nyt maksimum antal spillere: ");
+                        while (MaxPlayers < 1 && MaxPlayers <= MinPlayers) Int32.TryParse(Console.ReadLine(), out _maxPlayers);
+                        break;
+                    default:
+                        Console.WriteLine("Ugyldigt redigerings kriterie");
+                        break;
+
+                }
+            } while (true);
+        }
+
+        void RemoveItem(int idx)
+        {
+            if (idx >= 0 && idx < versionList.Count)
+            {
+                Console.WriteLine("Du har slettet følgende: ");
+                versionList[idx].ShowVersion();
+
+                versionList.RemoveAt(idx);
+
+                Console.WriteLine("Tryk Enter for at fortsætte...");
+                Console.ReadKey();
+            }
+
+        }
+
         public string GetGame()
         {
             return $"Spil: {Title} -- Genre: {Genre} -- Spillere: {MinPlayers} til {MaxPlayers}";
@@ -154,69 +239,6 @@ namespace Projekt_Genspil_v._2
                 Console.WriteLine($"Version ID: {i} | {version.GetVersion()}");
                 version.ListVersion();
             }
-        }
-
-        public void UpdateGame()
-        {
-            ShowGame();
-            string updateSelector = null;
-            bool updateContinue = true;
-            do
-            {
-                Console.WriteLine("Hvad ønsker du at opdatere? 0 for at afslutte.");
-                do
-                {
-                    updateSelector = Console.ReadLine().ToLower();
-                } while (updateSelector == null || updateSelector.Length == 0);
-
-                switch (updateSelector)
-                {
-                    case "0":
-                        updateContinue = false;
-                        break;
-                    case "1":
-                    case "titel":
-                        Console.Write("Indtast ny titel: ");
-                        Title = UpdateNullcheck();
-                        break;
-                    case "2":
-                    case "genre":
-                        Console.Write("Indtast ny genre: ");
-                        Genre = UpdateNullcheck();
-                        break;
-                    case "3":
-                    case "spillere":
-                        Console.Write("Indtast nyt minimum antal spillere: ");
-                        while (MinPlayers < 1) Int32.TryParse(Console.ReadLine(), out _minPlayers);
-                        Console.Write("Indtast nyt maksimum antal spillere: ");
-                        while (MaxPlayers < 1 && MaxPlayers < MinPlayers) Int32.TryParse(Console.ReadLine(), out _maxPlayers);
-                        break;
-                    case "4":
-                    case "version":
-                        Console.Write("Indtast ny version: ");
-                        //Version = UpdateNullcheck();
-                        break;
-                    case "5":
-                    case "stand":
-                        Console.Write("Indtast ny stand: ");
-                        //Condition = UpdateNullcheck();
-                        break;
-                    case "6":
-                    case "pris":
-                        Console.Write("Indtast ny pris: ");
-                        //while (Price == 0) Int32.TryParse(Console.ReadLine(), out _price);
-                        break;
-                    case "7":
-                    case "noter":
-                        Console.Write("Indtast ny noter: ");
-                        //Notes = UpdateNullcheck();
-                        break;
-                    default:
-                        Console.WriteLine("Ugyldigt redigerings kriterie");
-                        break;
-
-                }
-            } while (updateContinue == true);
         }
 
         private string UpdateNullcheck()

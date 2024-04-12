@@ -5,12 +5,7 @@
         static void Main(string[] args)
         {
             Menu menu = new Menu();
-            //Datahandler saveFile = new Datahandler();
-
-            //menu.ReadtxtFile();
-            //menu.SaveIndex();
             menu.ShowInventory();
-            //menu.ShowMainMenu();
             menu.SelectMainMenu();
         }
     }

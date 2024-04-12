@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-using System.Text;
+﻿using System.Reflection;
 
 namespace Projekt_Genspil_v._2
 {
@@ -34,7 +32,7 @@ namespace Projekt_Genspil_v._2
                 bool lines = true;
                 while (lines == true)
                 {
-                    
+
                     line = sr.ReadLine();
                     if (line == null)
                         break;
@@ -85,7 +83,7 @@ namespace Projekt_Genspil_v._2
                 foreach (Game game in inputGame)
                 {
                     sw.WriteLine(game.GetGame());
-                    for (int i = 0; i < game.versionList.Count; i++) 
+                    for (int i = 0; i < game.versionList.Count; i++)
                     {
                         sw.WriteLine(game.versionList[i].GetVersion());
                         for (int j = 0; j < game.versionList[i].copyList.Count; j++)
