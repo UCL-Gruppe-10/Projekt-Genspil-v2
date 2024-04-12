@@ -5,9 +5,9 @@
         public GameCopy tempCopy = new GameCopy();
         public List<GameCopy> copyList = new List<GameCopy>();
         private string _version;
-        public string Condition;
-        public int Price;
-        public string Notes;
+        public string tempCondition;
+        public int tempPrice;
+        public string tempNotes;
         public string Version
         {
             get { return _version; }
@@ -20,26 +20,20 @@
             }
         }
         public GameVersion() { }
-
         public GameVersion(string version)
         {
             Version = version;
         }
-
-        public GameVersion(string version, string condition, int price, string notes)
+        public GameVersion(string version, string condition, int price) : this(version, condition, price, null) { }
+        public GameVersion(string version, string Condition, int price, string notes)
         {
             Version = version;
-            tempCopy = new GameCopy(condition, price, notes);
+            tempCondition = Condition;
+            tempPrice = price;
+            tempNotes = notes;
+            tempCopy = new GameCopy(tempCondition, tempPrice, tempNotes);
             copyList.Add(tempCopy);
         }
-
-        public GameVersion(string version, string condition, int price)
-        {
-            Version = version;
-            tempCopy = new GameCopy(condition, price);
-            copyList.Add(tempCopy);
-        }
-
         public string GetVersion()
         {
             return $"Version: {Version}";
@@ -106,6 +100,7 @@
                 Console.WriteLine("=================");
                 Console.WriteLine("(O) Opdater version");
                 Console.WriteLine("(T) Tilgå sæt");
+                Console.WriteLine("(N) Nyt sæt");
                 Console.WriteLine("(S) Slet sæt");
                 Console.WriteLine("\n(0) Tilbage");
                 Console.WriteLine("=================");
@@ -115,20 +110,22 @@
                     case "0":
                         return;
                     case "O":
-                    case "OPDATER":
                         UpdateItem();
                         break;
                     case "T":
-                    case "TILGÅ":
                         Console.Write("Vælg ID for sæt at tilgå: ");
                         if (int.TryParse(Console.ReadLine(), out idx))
-                            copyList[idx].UpdateItem();
+                            if (idx > -1 && idx < copyList.Count)
+                                copyList[idx].UpdateItem();
+                        break;
+                    case "N":
+                        CreateCopy();
                         break;
                     case "S":
-                    case "SLET":
                         Console.Write("Vælg ID for sæt at slette: ");
                         if (int.TryParse(Console.ReadLine(), out idx))
-                            RemoveItem(idx);
+                            if (idx > -1 && idx < copyList.Count)
+                                RemoveItem(idx);
                         break;
                 }
             } while (true);
@@ -136,11 +133,29 @@
 
         public void UpdateItem()
         {
-            GetVersion();
+            Console.WriteLine(GetVersion());
             Console.WriteLine("\nOpdater version");
             Console.WriteLine("=================");
             Console.Write("Indtast ny titel: ");
             Version = UpdateNullcheck();
+        }
+
+        void CreateCopy()
+        {
+            Console.WriteLine(" - Information til nyt sæt - ");
+            Console.Write("Stand: ");
+            string tempCondition = Console.ReadLine();
+            int tempPrice;
+            Console.Write("Pris: ");
+            while (true)
+            {
+                Console.Write("Minimum spillere: ");
+                if (int.TryParse(Console.ReadLine(), out tempPrice))
+                    break;
+            }
+            Console.Write("Noter: ");
+            string tempNotes = Console.ReadLine();
+            copyList.Add(new GameCopy(tempCondition, tempPrice, tempNotes));
         }
 
         void RemoveItem(int idx)

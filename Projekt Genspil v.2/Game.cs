@@ -16,16 +16,16 @@
             Genre = genre;
             MinPlayers = minPlayers;
             MaxPlayers = maxPlayers;
-            GameVersion tempVersion = new GameVersion() { Version = version, Condition = condition, Price = price, Notes = notes };
+            GameVersion tempVersion = new GameVersion(version, condition, price, notes);
             iVersion++;
         }
-        public Game(string title, string version, string genre, int minPlayers, int maxPlayers, string condition, int price)
+        public Game(string title, string version, string genre, int minPlayers, int maxPlayers, string condition, int price) : this(title, version, genre, minPlayers, maxPlayers, condition, price, null)
         {
             Title = title;
             Genre = genre;
             MinPlayers = minPlayers;
             MaxPlayers = maxPlayers;
-            GameVersion tempVersion = new GameVersion() { Version = version, Condition = condition, Price = price };
+            GameVersion tempVersion = new GameVersion(version, condition, price);
             iVersion++;
         }
         public Game(string title, string genre, int minPlayers, int maxPlayers)
@@ -83,21 +83,21 @@
                 }
             }
         }
-        public List<GameVersion> CreateVersion(string _version, string _condition, int _price, string _notes)
+        public List<GameVersion> GenerateVersion(string _version, string _condition, int _price, string _notes)
         {
             GameVersion version = new GameVersion(_version, _condition, _price, _notes);
             versionList.Add(version);
             iVersion++;
             return versionList;
         }
-        public List<GameVersion> CreateVersion(string _version, string _condition, int _price)
+        public List<GameVersion> GenerateVersion(string _version, string _condition, int _price)
         {
-            GameVersion version = new GameVersion() { Version = _version, Condition = _condition, Price = _price };
+            GameVersion version = new GameVersion(_version, _condition, _price);
             versionList.Add(version);
             iVersion++;
             return versionList;
         }
-        public List<GameVersion> CreateVersion(string _version)
+        public List<GameVersion> GenerateVersion(string _version)
         {
             GameVersion version = new GameVersion() { Version = _version };
             versionList.Add(version);
@@ -122,6 +122,7 @@
                 Console.WriteLine("=================");
                 Console.WriteLine("(O) Opdater spil");
                 Console.WriteLine("(T) Tilgå version");
+                Console.WriteLine("(N) Ny version");
                 Console.WriteLine("(S) Slet version");
                 Console.WriteLine("\n(0) Tilbage");
                 Console.WriteLine("=================");
@@ -136,12 +137,17 @@
                     case "T":
                         Console.Write("Vælg ID for version at tilgå: ");
                         if (int.TryParse(Console.ReadLine(), out idx))
-                            versionList[idx].SearchMenu();
+                            if (idx > -1 && idx < versionList.Count)
+                                versionList[idx].SearchMenu();
+                        break;
+                    case "N":
+                        CreateVersion();
                         break;
                     case "S":
                         Console.Write("Vælg ID for version at slette: ");
                         if (int.TryParse(Console.ReadLine(), out idx))
-                            RemoveItem(idx);
+                            if (idx >-1 && idx < versionList.Count)
+                                RemoveItem(idx);
                         break;
                 }
             } while (true);
@@ -153,7 +159,7 @@
             do
             {
                 Console.Clear();
-                GetGame();
+                Console.WriteLine(GetGame());
                 Console.WriteLine("\nHvad ønsker du at opdatere?");
                 Console.WriteLine("=================");
                 Console.WriteLine("(1) Titel");
@@ -200,6 +206,14 @@
 
                 }
             } while (true);
+        }
+
+        void CreateVersion()
+        {
+            Console.WriteLine(" - Information til ny version - ");
+            Console.Write("Versionens navn: ");
+            string tempVersion = Console.ReadLine();
+            versionList.Add(new GameVersion(tempVersion));
         }
 
         void RemoveItem(int idx)

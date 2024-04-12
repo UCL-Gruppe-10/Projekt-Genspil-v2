@@ -3,7 +3,7 @@
     internal class Menu
     {
         public List<Game> gameList = new List<Game>();
-        DataHandler saveGameList = new DataHandler("GenspilLagerliste.txt");
+        DataHandler dataHandler;
         int gameItem = 0;
         public int GameItem
         {
@@ -13,34 +13,23 @@
 
         public Menu()
         {
-            DataHandler loadGameList = new DataHandler("GenspilLagerliste.txt");
-            gameList = loadGameList.LoadGames();
+            dataHandler = new DataHandler("GenspilLagerliste.txt");
+            gameList = dataHandler.LoadGames();
 
-            GameItem = loadGameList.Item;
+            GameItem = dataHandler.Item;
         }
 
         public void ShowMainMenu()
         {
             Console.WriteLine($"Genspil\n= = = = = = = = = =");
-
-            // Multi-kriterie søg?
-            Console.WriteLine("(1) Tilgå spil - Søg, rediger"); // Salg, forespørgsel, venteliste? // rediger funktion herunder
-
-            // Mulighed for at søge efter spil baseret på forskellige kriterier, såsom genre, antal spillere, stand, pris og titel.
-            // Skal evt kunne opdatere forspørgsel 
-            Console.WriteLine("(2) Opret spil"); // opdater koder til arbejde med persistens. 
-
-            // Mulighed for at se, hvilke spil der er tilgængelige i lageret, og hvilke der er reserveret eller bestilt, og mulighed for en udskrift.
-            // Sorteringsmuligheder efter spilnavn, genre og andre relevante kriterier.
+            Console.WriteLine("(1) Tilgå spil - Søg, rediger, opret version/sæt"); 
+            Console.WriteLine("(2) Opret spil"); 
             Console.WriteLine("(3) Lagerliste");
+            Console.WriteLine("(4) Gem lagerliste");
+            Console.WriteLine("\n(6) TEST - Index aktivt gameList til konsol");
+            Console.WriteLine("(7) TEST - Multi-kriterie søgefunktion");
 
-            Console.WriteLine("(4) Gem og udskriv lagerliste");
-            Console.WriteLine("(5) Print aktivt gameList til konsol");
-            Console.WriteLine("(6) Index aktivt gameList til konsol");
-            Console.WriteLine("(7) Tjek index 1, 1.1, og 1.1.1");
-            Console.WriteLine("(8) Slet Spil m. versioner + eksemplarer");
-
-            Console.WriteLine("\n(0) for at afslutte");
+            Console.WriteLine("\n(0) Gem lager og afslut program");
         }
 
         public void SelectMainMenu()
@@ -63,28 +52,18 @@
                         ShowInventory();
                         break;
                     case 4:
-                        saveGameList.SaveGames(gameList);
-                        break;
-                    case 5:
-                        ShowInventory();
+                        Console.WriteLine("Gemmer lagerliste ...");
+                        dataHandler.SaveGames(gameList);
+                        Console.WriteLine("... Lagerliste gemt!");
                         break;
                     case 6:
                         ListInventory();
                         break;
-                    case 7: // Virker ikke uden 'string txt' af en eller anden grund
-                        string txt = gameList[1].GetGame();
-                        Console.WriteLine(txt); // .GetGame 
-                        txt = gameList[1].versionList[1].GetVersion();
-                        Console.WriteLine(txt); // .GetVersion
-                        txt = gameList[1].versionList[1].copyList[1].GetCopy();
-                        Console.WriteLine(txt); // .GetCopy
-                        break;
-                    case 8:
-                        //RemoveGame();
-                        Console.WriteLine("!! Tilgå via søgning !!");
+                    case 7:
+                        SearchGamesByMultipleCriterias();
                         break;
                     case 0:
-                        saveGameList.SaveGames(gameList);
+                        dataHandler.SaveGames(gameList);
                         Console.WriteLine("Farvel");
                         break;
                     default:
@@ -113,44 +92,6 @@
             return itemId;
         }
 
-
-        void CreateGame()
-        {
-            Console.WriteLine(" - Information til nyt spil - ");
-            Console.Write("Navn: ");
-            string tempTitle = Console.ReadLine();
-            Console.Write("Version: ");
-            string tempVersion = Console.ReadLine();
-            Console.Write("Genre: ");
-            string tempGenre = Console.ReadLine();
-            int tempMinPlayers;
-            while (true)
-            {
-                Console.Write("Minimum spillere: ");
-                if (int.TryParse(Console.ReadLine(), out tempMinPlayers))
-                    break;
-            }
-            int tempMaxPlayers;
-            while (true)
-            {
-                Console.Write("Max antal spillere: ");
-                if (int.TryParse(Console.ReadLine(), out tempMaxPlayers))
-                    break;
-            }
-            Console.Write("Stand: ");
-            string tempCondition = Console.ReadLine();
-            int tempPrice;
-            while (true)
-            {
-                Console.Write("Pris: ");
-                if (int.TryParse(Console.ReadLine(), out tempPrice))
-                    break;
-            }
-            Console.Write("Noter: ");
-            string tempNotes = Console.ReadLine();
-            gameList.Add(new Game(tempTitle, tempVersion, tempGenre, tempMinPlayers, tempMaxPlayers, tempCondition, tempPrice, tempNotes));
-        }
-
         public void ShowInventory()
         {
             foreach (Game game in gameList)
@@ -162,6 +103,7 @@
 
         public void ListInventory()
         {
+            Console.Clear();
             for (int i = 0; i < gameList.Count; i++)
             {
                 Game game = gameList[i];
@@ -258,8 +200,10 @@
             {
                 Console.WriteLine("=================");
                 Console.WriteLine("(T) Tilgå spil");
+                Console.WriteLine("(N) Nyt spil");
                 Console.WriteLine("(S) Slet spil");
                 Console.WriteLine("\n(0) Tilbage");
+                Console.WriteLine("=================");
                 int idx;
                 switch (Console.ReadLine().ToUpper())
                 {
@@ -268,16 +212,60 @@
                     case "T":
                         Console.Write("Vælg ID for spillet du ønsker at tilgå: ");
                         if (int.TryParse(Console.ReadLine(), out idx))
-                            gameList[idx].SearchMenu();
-                        break;
+                            if (idx > -1 && idx < gameList.Count)
+                                gameList[idx].SearchMenu();
+                        return;
+                    case "N":
+                        CreateGame();
+                        return;
                     case "S":
-
                         Console.Write("Vælg ID for spillet du ønsker at slette: ");
                         if (int.TryParse(Console.ReadLine(), out idx))
-                            RemoveItem(idx);
+                            if (idx > -1 && idx < gameList.Count)
+                                RemoveItem(idx);
+                        return;
+                    default:
                         break;
                 }
             } while (true);
+        }
+
+        void CreateGame()
+        {
+            Console.WriteLine(" - Information til nyt spil - ");
+            Console.Write("Navn: ");
+            string tempTitle = Console.ReadLine();
+            Console.Write("Genre: ");
+            string tempGenre = Console.ReadLine();
+            int tempMinPlayers;
+            while (true)
+            {
+                Console.Write("Minimum spillere: ");
+                if (int.TryParse(Console.ReadLine(), out tempMinPlayers))
+                    break;
+            }
+            int tempMaxPlayers;
+            while (true)
+            {
+                Console.Write("Max antal spillere: ");
+                if (int.TryParse(Console.ReadLine(), out tempMaxPlayers))
+                    break;
+            }
+            gameList.Add(new Game(tempTitle, tempGenre, tempMinPlayers, tempMaxPlayers));
+        }
+
+        void RemoveItem(int idx)
+        {
+            if (idx >= 0 && idx < gameList.Count)
+            {
+                Console.WriteLine("Du har slettet følgende: ");
+                gameList[idx].ShowGame();
+
+                gameList.RemoveAt(idx);
+
+                Console.WriteLine("Tryk Enter for at fortsætte...");
+                Console.ReadKey();
+            }
         }
 
         void SearchGamesTitle(string searchWord)
@@ -358,7 +346,6 @@
             }
         }
 
-
         void SearchGamesCondition(string searchWord)
         {
             Console.WriteLine($"Resultatet af din søgning: '{searchWord}'");
@@ -414,7 +401,6 @@
             Console.WriteLine("Tryk Enter for at fortsætte...");
             Console.ReadLine();
         }
-
 
         void SearchGamesNotes(string searchWord)
         {
@@ -514,29 +500,5 @@
             }
             return null;
         }
-
-
-
-        void RemoveItem(int idx)
-        {
-            //Console.WriteLine("Slet spil via ID");
-            //int i = int.Parse(Console.ReadLine());
-            //int j = int.Parse(Console.ReadLine());
-            //int k = int.Parse(Console.ReadLine());
-
-            //gameList[i].versionList[j].copyList.RemoveAt(k);
-            if (idx >= 0 && idx < gameList.Count)
-            {
-                Console.WriteLine("Du har slettet følgende: ");
-                gameList[idx].ShowGame();
-
-                gameList.RemoveAt(idx);
-
-                Console.WriteLine("Tryk Enter for at fortsætte...");
-                Console.ReadKey();
-            }
-
-        }
-
     }
 }

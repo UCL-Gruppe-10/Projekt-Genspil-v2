@@ -5,6 +5,7 @@
         private string _condition;
         private int _price;
         private string _notes;
+
         public string Condition
         {
             get { return _condition; }
@@ -38,12 +39,9 @@
                 }
             }
         }
+
         public GameCopy() { }
-        public GameCopy(string a, int b)
-        {
-            Condition = a;
-            Price = b;
-        }
+        public GameCopy(string a, int b) : this(a, b, null) { }
         public GameCopy(string a, int b, string c)
         {
             Condition = a;
@@ -60,13 +58,14 @@
         {
             Console.WriteLine($"        Stand: {Condition} -- Pris: {Price} -- Noter: {Notes}");
         }
+
         public void UpdateItem()
         {
             string updateSelector = null;
             do
             {
                 Console.Clear();
-                GetCopy();
+                Console.WriteLine(GetCopy());
                 Console.WriteLine("\nHvad ønsker du at opdatere?");
                 Console.WriteLine("=================");
                 Console.WriteLine("(1) Stand");
@@ -90,7 +89,7 @@
                     case "2":
                     case "PRIS":
                         Console.Write("Indtast ny pris: ");
-                        while (Price < 0) Int32.TryParse(Console.ReadLine(), out _price);
+                        do Int32.TryParse(Console.ReadLine(), out _price); while (Price < 0);
                         break;
                     case "4":
                     case "NOTER":

@@ -1,22 +1,23 @@
-Lagerliste Genspil - 06-04-2024
-Tittel:       Ticket to ride       : Genre:       familie       : Minimum spillere: 2 : maximum: 5 
-Version:       Europe
-Stand: a : Pris: 555 : Note:       
-Stand: c : Pris: 150 : Note:       Resserveret af Lisbeth Hansen
-Tittel:       Sequence       : Genre:       Quiz       : Minimum spillere: 2 : maximum: 5 
-Version:       Original
-Stand: a : Pris: 225 : Note:       
-Stand: b : Pris: 175 : Note:       Venteliste
-Stand: c : Pris: 112 : Note:       
-Version:       Junior
-Stand: a : Pris: 200 : Note:       
-Stand: b : Pris: 175 : Note:       
-Stand: c : Pris: 150 : Note:       Venteliste
-Version:       Rejsespil
-Stand: a : Pris: 220 : Note:       
-Tittel:      Risk      : Genre:      Strategi      : Minimum spillere: 2 : maximum: 6 
-Version:      Ringenes herre
-Stand: a : Pris: 285 : Note:      
-Tittel:  Analrytterne fra ARK  : Genre:  erotik  : Minimum spillere: 1 : maximum: 2 
-Version:  Den brune noughat ridder
-Stand: b : Pris: 250 : Note:  lettere brugt, med en harsk duft
+Lagerliste Genspil - 11-04-2024 15:16:18
+Spil:           Ticket to ride           : Genre:           familie           : Spillere: 2 : til: 5
+Version:           Europe
+Stand:     a  : Pris: 555: Noter:           
+Stand:     c  : Pris: 150: Noter:           Resserveret af Lisbeth Hansen
+Spil:           Sequence           : Genre:           Quiz           : Spillere: 2 : til: 5
+Version:           Original
+Stand:     a  : Pris: 225: Noter:           
+Stand:     b  : Pris: 175: Noter:           Venteliste
+Stand:     c  : Pris: 112: Noter:           
+Version:           Junior
+Stand:     a  : Pris: 200: Noter:           
+Stand:     b  : Pris: 175: Noter:           
+Stand:     c  : Pris: 150: Noter:           Venteliste
+Version:           Rejsespil
+Stand:     a  : Pris: 220: Noter:           
+Spil:          Risk          : Genre:          Strategi          : Spillere: 2 : til: 6
+Version:          Ringenes herre
+Stand:     a  : Pris: 285: Noter:          
+Spil:      Analrytterne fra ARK      : Genre:      erotik      : Spillere: 1 : til: 2
+Version:      Den brune noughat ridder
+Stand:     b  : Pris: 250: Noter:      lettere brugt, med en harsk duft
+Spil: Den flyvende roulade 2 : Genre: Post apokalyptisk : Spillere: 1 : til: 66
