@@ -1,23 +1,24 @@
-Lagerliste Genspil - 11-04-2024 15:16:18
-Spil:           Ticket to ride           : Genre:           familie           : Spillere: 2 : til: 5
-Version:           Europe
-Stand:     a  : Pris: 555: Noter:           
-Stand:     c  : Pris: 150: Noter:           Resserveret af Lisbeth Hansen
-Spil:           Sequence           : Genre:           Quiz           : Spillere: 2 : til: 5
-Version:           Original
-Stand:     a  : Pris: 225: Noter:           
-Stand:     b  : Pris: 175: Noter:           Venteliste
-Stand:     c  : Pris: 112: Noter:           
-Version:           Junior
-Stand:     a  : Pris: 200: Noter:           
-Stand:     b  : Pris: 175: Noter:           
-Stand:     c  : Pris: 150: Noter:           Venteliste
-Version:           Rejsespil
-Stand:     a  : Pris: 220: Noter:           
-Spil:          Risk          : Genre:          Strategi          : Spillere: 2 : til: 6
-Version:          Ringenes herre
-Stand:     a  : Pris: 285: Noter:          
-Spil:      Analrytterne fra ARK      : Genre:      erotik      : Spillere: 1 : til: 2
-Version:      Den brune noughat ridder
-Stand:     b  : Pris: 250: Noter:      lettere brugt, med en harsk duft
-Spil: Den flyvende roulade 2 : Genre: Post apokalyptisk : Spillere: 1 : til: 66
+Lagerliste Genspil - 12/04/2024 23.10.58
+Spil: Sequence -- Genre: Quiz -- Spillere: 2 til 5
+Version: Original
+Stand: a -- Pris: 225 -- Noter: 
+Stand: b -- Pris: 175 -- Noter: Venteliste
+Stand: c -- Pris: 112 -- Noter: 
+Version: Junior
+Stand: a -- Pris: 200 -- Noter: 
+Stand: b -- Pris: 175 -- Noter: 
+-
+Spil: Risk -- Genre: Strategi -- Spillere: 2 til 8
+Version: Original
+Stand: a -- Pris: 500 -- Noter: 
+Stand: c -- Pris: 275 -- Noter: Reserveret til Lars
+Stand: e -- Pris: 75 -- Noter: 
+Version: Star Wars
+Stand: a -- Pris: 600 -- Noter: Uåbnet
+Stand: b -- Pris: 450 -- Noter: 
+-
+Spil: Skak -- Genre: Strategi -- Spillere: 2 til 2
+Version: Harry Potter
+-
+Spil: Stratego -- Genre: Strategi -- Spillere: 2 til 2
+-
