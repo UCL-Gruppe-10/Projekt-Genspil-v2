@@ -1,5 +1,0 @@
-Lagerliste Genspil
-Lagerliste Genspil
-Tittel: asd : Genre: da : Minimum spillere: 2 : maximum: 4 
-    Version: asd
-        Stand: a : Pris: 123 : Note: gdsfsd
