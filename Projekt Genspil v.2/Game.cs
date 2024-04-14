@@ -1,4 +1,6 @@
-﻿namespace Projekt_Genspil_v._2
+﻿using System.Diagnostics;
+
+namespace Projekt_Genspil_v._2
 {
     public class Game
     {
@@ -17,6 +19,7 @@
             MinPlayers = minPlayers;
             MaxPlayers = maxPlayers;
             GameVersion tempVersion = new GameVersion(version, condition, price, notes);
+            versionList.Add(tempVersion);
             iVersion++;
         }
         public Game(string title, string version, string genre, int minPlayers, int maxPlayers, string condition, int price) : this(title, version, genre, minPlayers, maxPlayers, condition, price, null)
@@ -26,6 +29,7 @@
             MinPlayers = minPlayers;
             MaxPlayers = maxPlayers;
             GameVersion tempVersion = new GameVersion(version, condition, price);
+            versionList.Add(tempVersion);
             iVersion++;
         }
         public Game(string title, string genre, int minPlayers, int maxPlayers)
@@ -35,9 +39,17 @@
             MinPlayers = minPlayers;
             MaxPlayers = maxPlayers;
         }
-        public Game()
+        public Game(string title, string version, string genre, int minPlayers, int maxPlayers)
         {
+            Title = title;
+            Genre = genre;
+            MinPlayers = minPlayers;
+            MaxPlayers = maxPlayers;
+            GameVersion tempVersion = new GameVersion(version);
+            versionList.Add(tempVersion);
+            iVersion++;
         }
+        public Game() { }
         public string Title
         {
             get { return _title; }
@@ -208,7 +220,7 @@
             } while (true);
         }
 
-        void CreateVersion()
+        public void CreateVersion()
         {
             Console.WriteLine(" - Information til ny version - ");
             Console.Write("Versionens navn: ");

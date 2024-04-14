@@ -1,4 +1,6 @@
-﻿namespace Projekt_Genspil_v._2
+﻿using System.Collections.Generic;
+
+namespace Projekt_Genspil_v._2
 {
     public class GameVersion
     {
@@ -33,6 +35,7 @@
             tempNotes = notes;
             tempCopy = new GameCopy(tempCondition, tempPrice, tempNotes);
             copyList.Add(tempCopy);
+            SortListByCondition(copyList);
         }
         public string GetVersion()
         {
@@ -76,12 +79,14 @@
         {
             GameCopy copy = new GameCopy(condition, price, notes);
             copyList.Add(copy);
+            SortListByCondition(copyList);
         }
 
         public void AddCopy(string condition, int price)
         {
             GameCopy copy = new GameCopy(condition, price);
             copyList.Add(copy);
+            SortListByCondition(copyList);
         }
 
         public void SearchMenu()
